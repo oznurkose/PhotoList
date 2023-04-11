@@ -11,6 +11,12 @@
 		01BA703229E027280049EB22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703129E027280049EB22 /* ContentView.swift */; };
 		01BA703429E027280049EB22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BA703329E027280049EB22 /* Assets.xcassets */; };
 		01BA703729E027280049EB22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BA703629E027280049EB22 /* Preview Assets.xcassets */; };
+		01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703D29E02A050049EB22 /* PhotoListView.swift */; };
+		01BA704029E02A180049EB22 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703F29E02A180049EB22 /* ImportView.swift */; };
+		01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704129E02B510049EB22 /* ImagePicker.swift */; };
+		01BA704429E02BC40049EB22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704329E02BC40049EB22 /* Model.swift */; };
+		01BA704629E031780049EB22 /* DetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704529E031780049EB22 /* DetailedView.swift */; };
+		01BA704829E03B110049EB22 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704729E03B110049EB22 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		01BA703129E027280049EB22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		01BA703329E027280049EB22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01BA703629E027280049EB22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		01BA703D29E02A050049EB22 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
+		01BA703F29E02A180049EB22 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
+		01BA704129E02B510049EB22 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		01BA704329E02BC40049EB22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		01BA704529E031780049EB22 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
+		01BA704729E03B110049EB22 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,12 @@
 			children = (
 				01BA702F29E027280049EB22 /* PhotoListApp.swift */,
 				01BA703129E027280049EB22 /* ContentView.swift */,
+				01BA703D29E02A050049EB22 /* PhotoListView.swift */,
+				01BA704529E031780049EB22 /* DetailedView.swift */,
+				01BA704729E03B110049EB22 /* EditView.swift */,
+				01BA703F29E02A180049EB22 /* ImportView.swift */,
+				01BA704129E02B510049EB22 /* ImagePicker.swift */,
+				01BA704329E02BC40049EB22 /* Model.swift */,
 				01BA703329E027280049EB22 /* Assets.xcassets */,
 				01BA703529E027280049EB22 /* Preview Content */,
 			);
@@ -138,7 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				01BA703229E027280049EB22 /* ContentView.swift in Sources */,
+				01BA704029E02A180049EB22 /* ImportView.swift in Sources */,
+				01BA704829E03B110049EB22 /* EditView.swift in Sources */,
+				01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */,
+				01BA704429E02BC40049EB22 /* Model.swift in Sources */,
+				01BA704629E031780049EB22 /* DetailedView.swift in Sources */,
 				01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */,
+				01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
