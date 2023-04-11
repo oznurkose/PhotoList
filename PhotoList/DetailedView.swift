@@ -43,7 +43,7 @@ struct DetailedView: View {
             if let index = images.images.firstIndex(where: { $0.id == image.id }) {
                 image = images.images[index] }
         }
-
+        
     }
 }
 

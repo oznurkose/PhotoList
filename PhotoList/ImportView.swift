@@ -14,6 +14,7 @@ struct ImportView: View {
     @State private var imageName = ""
     @State private var showingAlert = false
     @EnvironmentObject var images: ImageModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
@@ -21,10 +22,38 @@ struct ImportView: View {
                 //select an image
                 Group {
                     if image == nil {
-                        Image(systemName: "photo.on.rectangle")
-                            .resizable()
-                            .frame(width: 180, height: 150)
-                            .scaledToFit()
+                        ZStack {
+                            ZStack(alignment: .bottomTrailing) {
+                                // image frame
+                                Circle()
+                                    .strokeBorder(.blue, lineWidth:1)
+//                                (
+//                                        Color(uiColor: .opaqueSeparator), lineWidth: 2)
+    //                                        .overlay(alignment: .bottomTrailing) {
+    //                                            Image(systemName: "plus.circle")
+    //                                                .foregroundColor(.blue)
+    //                                                .font(.largeTitle)
+    //                                        }
+                                    .frame(width: 300, height: 300)
+                                
+                                Image(systemName: "plus.circle")
+                                    .background(.white)
+                                    .frame(width: 87, height: 87)
+                                    .foregroundColor(.blue)
+                                    .font(.largeTitle)
+                                }
+                            Image(systemName: "photo.on.rectangle")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(70)
+                                .frame(width: 300, height: 300)
+                                .foregroundColor(.blue)
+                                .clipShape(Circle())
+                            
+                            
+                        }
+                     
+                          
                     }
                     else {
                         Image(uiImage: image!)
@@ -49,7 +78,9 @@ struct ImportView: View {
                 ImagePicker(image: $image)
             }
             .alert("Image saved successfuly!", isPresented: $showingAlert) {
-                
+                Button("OK") {
+                    dismiss()
+                }
             }
             .toolbar {
                 ToolbarItem {
@@ -62,8 +93,6 @@ struct ImportView: View {
                             let imageData = ImageData(id: UUID(), name: imageName, image: image!)
                             images.add(image: imageData)
                             ImageModel.save(images: images.images)
-                            imageName = ""
-                            image = nil
                             showingAlert = true
                             print(images)
                         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoListView: View {
     @EnvironmentObject var images: ImageModel
+    @State private var importImage = false
     
     var body: some View {
         NavigationView {
@@ -36,6 +37,18 @@ struct PhotoListView: View {
                 images.load()
             }
             .navigationTitle("Photos")
+            .toolbar {
+                Button {
+                    //
+                    importImage = true
+                } label: {
+                    Label("Import photo", systemImage: "plus")
+                }
+                
+            }
+            .sheet(isPresented: $importImage) {
+                ImportView()
+            }
         }
        // .environmentObject(images)
     }

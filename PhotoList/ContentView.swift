@@ -17,11 +17,13 @@ struct ContentView: View {
                     Label("Photos", systemImage: "photo.on.rectangle")
                 }
             
-            ImportView()
+            SettingsView()
                 .environmentObject(images)
                 .tabItem {
-                    Label("Import", systemImage: "plus.circle")
+                    Label("Settings", systemImage: "gearshape")
                 }
+
+            
         }
      
         
