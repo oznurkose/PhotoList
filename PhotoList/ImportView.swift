@@ -16,6 +16,8 @@ struct ImportView: View {
     @EnvironmentObject var images: ImageModel
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -30,7 +32,7 @@ struct ImportView: View {
                                     .frame(width: 200, height: 200)
                                 
                                 Image(systemName: "plus.circle")
-                                    .background(.white)
+                                    .background(isDarkMode ? .black : .white)
                                     .frame(width: 58, height: 58)
                                     .foregroundColor(.blue)
                                     .font(.title)
