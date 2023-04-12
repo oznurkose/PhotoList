@@ -27,26 +27,19 @@ struct ImportView: View {
                                 // image frame
                                 Circle()
                                     .strokeBorder(.blue, lineWidth:1)
-//                                (
-//                                        Color(uiColor: .opaqueSeparator), lineWidth: 2)
-    //                                        .overlay(alignment: .bottomTrailing) {
-    //                                            Image(systemName: "plus.circle")
-    //                                                .foregroundColor(.blue)
-    //                                                .font(.largeTitle)
-    //                                        }
-                                    .frame(width: 300, height: 300)
+                                    .frame(width: 200, height: 200)
                                 
                                 Image(systemName: "plus.circle")
                                     .background(.white)
-                                    .frame(width: 87, height: 87)
+                                    .frame(width: 58, height: 58)
                                     .foregroundColor(.blue)
-                                    .font(.largeTitle)
+                                    .font(.title)
                                 }
                             Image(systemName: "photo.on.rectangle")
                                 .resizable()
                                 .scaledToFit()
                                 .padding(70)
-                                .frame(width: 300, height: 300)
+                                .frame(width: 250, height: 250)
                                 .foregroundColor(.blue)
                                 .clipShape(Circle())
                             
@@ -58,7 +51,7 @@ struct ImportView: View {
                     else {
                         Image(uiImage: image!)
                             .resizable()
-                            .frame(width: 280, height: 180)
+                            .frame(height: 250)
                             .scaledToFit()
                     }
                 }

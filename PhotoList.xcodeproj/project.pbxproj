@@ -66,11 +66,11 @@
 			isa = PBXGroup;
 			children = (
 				01BA702F29E027280049EB22 /* PhotoListApp.swift */,
+				01BA703129E027280049EB22 /* ContentView.swift */,
 				01BA703D29E02A050049EB22 /* PhotoListView.swift */,
+				01BA703F29E02A180049EB22 /* ImportView.swift */,
 				01BA704529E031780049EB22 /* DetailedView.swift */,
 				01BA704729E03B110049EB22 /* EditView.swift */,
-				01BA703129E027280049EB22 /* ContentView.swift */,
-				01BA703F29E02A180049EB22 /* ImportView.swift */,
 				01515DFD29E5D0DE001F3296 /* SettingsView.swift */,
 				01BA704129E02B510049EB22 /* ImagePicker.swift */,
 				01BA704329E02BC40049EB22 /* Model.swift */,

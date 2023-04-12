@@ -11,36 +11,46 @@ struct EditView: View {
     @State var image: ImageData
     @EnvironmentObject var images: ImageModel
     @Environment(\.dismiss) var dismiss
-
-        
+    
+    
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Edit", text: $image.name)
-                    .font(.headline)
-                    .textFieldStyle(.roundedBorder)
+            ScrollView {
+                VStack {
+                    TextField("Edit", text: $image.name)
+                        .font(.headline)
+                        .textFieldStyle(.roundedBorder)
+                        .padding(.horizontal)
+                    
+                    
+                    Image(uiImage: image.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 500)
+                        .padding()
+                    
+                }
                 
-                Image(uiImage: image.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 500, height: 500)
-                
+            }
+            
+        }
+        .toolbar {
+            ToolbarItem {
                 Button("Save") {
                     //
                     images.delete(image: image)
                     images.add(image: image)
-                    //images.edit(image: image)
+                    ImageModel.save(images: images.images)
+                    print(images)
                     dismiss()
                 }
-                .buttonStyle(.borderedProminent)
-                
             }
         }
-       
+        
     }
     
 }
-    
+
 
 
 //struct EditView_Previews: PreviewProvider {
