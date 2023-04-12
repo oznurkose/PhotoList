@@ -12,23 +12,27 @@ struct ImageData: Identifiable, Codable {
     let id: UUID
     var name: String
     let image: UIImage
+    let date: Date
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case imageData
+        case date
     }
     
-    init(id: UUID, name: String, image: UIImage) {
+    init(id: UUID, name: String, image: UIImage, date: Date) {
         self.id = id
         self.name = name
         self.image = image
+        self.date = date
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
+        date = try container.decode(Date.self, forKey: .date)
         let imageData = try container.decode(Data.self, forKey: .imageData)
         image = UIImage(data: imageData) ?? UIImage(named: "sicily")!
     }
@@ -39,6 +43,7 @@ struct ImageData: Identifiable, Codable {
             // encoded
             try container.encode(id, forKey: .id)
             try container.encode(name, forKey: .name)
+            try container.encode(date, forKey: .date)
             if let imageData = image.jpegData(compressionQuality: 0.8) {
                 try container.encode(imageData, forKey: .imageData)
             }
@@ -121,8 +126,11 @@ class ImageModel: ObservableObject {
 
 
 extension ImageModel {
-    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!),
-                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!)])
+    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now),
+                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now)])
 }
 
 
+class Settings: ObservableObject {
+    @Published var nameOnly = false
+}

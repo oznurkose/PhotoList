@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var settings: Settings
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Section {
+                    Toggle("Show photos with name", isOn: $settings.nameOnly)
+                }
+                Section {
+                    Toggle("Dark mode", isOn: $isDarkMode)
+                }
+            }
+            .navigationTitle("Settings")
+            
+        }
+        
     }
 }
 

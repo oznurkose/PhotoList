@@ -9,12 +9,41 @@ import SwiftUI
 
 struct PhotoListView: View {
     @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var settings: Settings
     @State private var importImage = false
+    @State private var sortingStyle = "date"
+    @State private var sortingDialogue = false
+    @State private var searchText = ""
+    
+    var sortedImages: [ImageData] {
+        switch sortingStyle {
+        case "date":
+            return images.images.sorted { $0.date < $1.date }
+            
+        default:
+            return images.images.sorted { $0.name < $1.name }
+        }
+    }
+    
+    var searchImages: [ImageData] {
+        if searchText.isEmpty {
+            return sortedImages
+        }
+        else {
+            return sortedImages.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
+    var filteredImages: [ImageData] {
+        settings.nameOnly ? searchImages.filter { $0.name.trimmingCharacters(in: .whitespacesAndNewlines) != "" } : searchImages
+    }
+
+    
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(images.images) { image in
+                ForEach(filteredImages) { image in
                     NavigationLink(destination: DetailedView(image: image)) {
                         HStack {
                             Text("\(image.name)")
@@ -33,6 +62,7 @@ struct PhotoListView: View {
                 }
                 
             }
+            .searchable(text: $searchText)
             .onAppear {
                 images.load()
             }
@@ -46,9 +76,30 @@ struct PhotoListView: View {
                 }
                 
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        //
+                        sortingDialogue = true
+                    } label: {
+                        Label("Sorting", systemImage: "arrow.up.arrow.down")
+                    }
+                }
+            }
+            .confirmationDialog("Sort photos", isPresented: $sortingDialogue) {
+                Button("Date") {
+                    sortingStyle = "date"
+                }
+                Button("Name") {
+                    sortingStyle = "name"
+                }
+            } message: {
+                Text("Sort by")
+            }
             .sheet(isPresented: $importImage) {
                 ImportView()
             }
+            
         }
        // .environmentObject(images)
     }

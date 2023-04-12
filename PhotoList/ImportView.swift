@@ -51,7 +51,7 @@ struct ImportView: View {
                     else {
                         Image(uiImage: image!)
                             .resizable()
-                            .frame(height: 250)
+                        //   .frame(height: 350)
                             .scaledToFit()
                     }
                 }
@@ -83,7 +83,7 @@ struct ImportView: View {
                             // show alert
                         }
                         else {
-                            let imageData = ImageData(id: UUID(), name: imageName, image: image!)
+                            let imageData = ImageData(id: UUID(), name: imageName, image: image!, date: Date.now)
                             images.add(image: imageData)
                             ImageModel.save(images: images.images)
                             showingAlert = true

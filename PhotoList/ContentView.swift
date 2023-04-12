@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var images = ImageModel()
+    @StateObject var settings = Settings()
+    
     var body: some View {
         TabView {
             PhotoListView()
@@ -24,7 +26,8 @@ struct ContentView: View {
                 }
 
             
-        }
+        }.environmentObject(settings)
+       
      
         
     }
