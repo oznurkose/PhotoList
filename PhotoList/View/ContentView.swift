@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var images = ImageModel()
     @StateObject var settings = Settings()
+    @StateObject var locationFetcher = LocationFetcher()
     
     var body: some View {
         TabView {
@@ -27,6 +28,7 @@ struct ContentView: View {
 
             
         }.environmentObject(settings)
+        .environmentObject(locationFetcher)
        
      
         

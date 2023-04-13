@@ -10,10 +10,13 @@ import SwiftUI
 struct PhotoListView: View {
     @EnvironmentObject var images: ImageModel
     @EnvironmentObject var settings: Settings
+    @EnvironmentObject var locationFetcher: LocationFetcher
+    
     @State private var importImage = false
     @State private var sortingStyle = "date"
     @State private var sortingDialogue = false
     @State private var searchText = ""
+    
     
     var sortedImages: [ImageData] {
         switch sortingStyle {
@@ -65,6 +68,7 @@ struct PhotoListView: View {
             .searchable(text: $searchText)
             .onAppear {
                 images.load()
+                locationFetcher.start()
             }
             .navigationTitle("Photos")
             .toolbar {
@@ -73,6 +77,7 @@ struct PhotoListView: View {
                     importImage = true
                 } label: {
                     Label("Import photo", systemImage: "plus")
+                        .font(.system(size: 20))
                 }
                 
             }
@@ -83,6 +88,7 @@ struct PhotoListView: View {
                         sortingDialogue = true
                     } label: {
                         Label("Sorting", systemImage: "arrow.up.arrow.down")
+                            .font(.system(size: 17))
                     }
                 }
             }

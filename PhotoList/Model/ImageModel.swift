@@ -4,7 +4,7 @@
 //
 //  Created by Öznur Köse on 7.04.2023.
 //
-
+import CoreLocation
 import Foundation
 import SwiftUI
 
@@ -13,19 +13,23 @@ struct ImageData: Identifiable, Codable {
     var name: String
     let image: UIImage
     let date: Date
+    var location: CLLocationCoordinate2D
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case imageData
         case date
+        case latitude
+        case longitude
     }
     
-    init(id: UUID, name: String, image: UIImage, date: Date) {
+    init(id: UUID, name: String, image: UIImage, date: Date, location: CLLocationCoordinate2D) {
         self.id = id
         self.name = name
         self.image = image
         self.date = date
+        self.location = location
     }
     
     init(from decoder: Decoder) throws {
@@ -33,6 +37,9 @@ struct ImageData: Identifiable, Codable {
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         date = try container.decode(Date.self, forKey: .date)
+        let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
+        let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
+        location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let imageData = try container.decode(Data.self, forKey: .imageData)
         image = UIImage(data: imageData) ?? UIImage(named: "sicily")!
     }
@@ -44,6 +51,8 @@ struct ImageData: Identifiable, Codable {
             try container.encode(id, forKey: .id)
             try container.encode(name, forKey: .name)
             try container.encode(date, forKey: .date)
+            try container.encode(location.latitude, forKey: .latitude)
+            try container.encode(location.longitude, forKey: .longitude)
             if let imageData = image.jpegData(compressionQuality: 0.8) {
                 try container.encode(imageData, forKey: .imageData)
             }
@@ -126,8 +135,8 @@ class ImageModel: ObservableObject {
 
 
 extension ImageModel {
-    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now),
-                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now)])
+    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now, location: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417)),
+                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now, location: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417))])
 }
 
 

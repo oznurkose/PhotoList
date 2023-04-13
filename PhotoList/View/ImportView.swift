@@ -4,7 +4,7 @@
 //
 //  Created by Öznur Köse on 7.04.2023.
 //
-
+import MapKit
 import SwiftUI
 
 struct ImportView: View {
@@ -14,6 +14,8 @@ struct ImportView: View {
     @State private var imageName = ""
     @State private var showingAlert = false
     @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var locationFetcher: LocationFetcher
+    
     @Environment(\.dismiss) var dismiss
     
     @AppStorage("isDarkMode") private var isDarkMode = false
@@ -85,7 +87,7 @@ struct ImportView: View {
                             // show alert
                         }
                         else {
-                            let imageData = ImageData(id: UUID(), name: imageName, image: image!, date: Date.now)
+                            let imageData = ImageData(id: UUID(), name: imageName, image: image!, date: Date.now, location: CLLocationCoordinate2D(latitude: locationFetcher.lastKnownLocation!.latitude, longitude: locationFetcher.lastKnownLocation!.longitude))
                             images.add(image: imageData)
                             ImageModel.save(images: images.images)
                             showingAlert = true

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B10D829E81F3200588AE7 /* LocationFetcher.swift */; };
 		01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01515DFD29E5D0DE001F3296 /* SettingsView.swift */; };
 		01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* PhotoListApp.swift */; };
 		01BA703229E027280049EB22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703129E027280049EB22 /* ContentView.swift */; };
@@ -15,12 +16,14 @@
 		01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703D29E02A050049EB22 /* PhotoListView.swift */; };
 		01BA704029E02A180049EB22 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703F29E02A180049EB22 /* ImportView.swift */; };
 		01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704129E02B510049EB22 /* ImagePicker.swift */; };
-		01BA704429E02BC40049EB22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704329E02BC40049EB22 /* Model.swift */; };
+		01BA704429E02BC40049EB22 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704329E02BC40049EB22 /* ImageModel.swift */; };
 		01BA704629E031780049EB22 /* DetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704529E031780049EB22 /* DetailedView.swift */; };
 		01BA704829E03B110049EB22 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA704729E03B110049EB22 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		011B10D829E81F3200588AE7 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		011B10DA29E8203A00588AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01515DFD29E5D0DE001F3296 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		01BA702C29E027280049EB22 /* PhotoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01BA702F29E027280049EB22 /* PhotoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListApp.swift; sourceTree = "<group>"; };
@@ -30,7 +33,7 @@
 		01BA703D29E02A050049EB22 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 		01BA703F29E02A180049EB22 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
 		01BA704129E02B510049EB22 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		01BA704329E02BC40049EB22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		01BA704329E02BC40049EB22 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		01BA704529E031780049EB22 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
 		01BA704729E03B110049EB22 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +49,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		011B10DB29E8A86500588AE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01BA703129E027280049EB22 /* ContentView.swift */,
+				01BA703D29E02A050049EB22 /* PhotoListView.swift */,
+				01BA703F29E02A180049EB22 /* ImportView.swift */,
+				01BA704529E031780049EB22 /* DetailedView.swift */,
+				01BA704729E03B110049EB22 /* EditView.swift */,
+				01515DFD29E5D0DE001F3296 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		011B10DD29E8AB4600588AE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				011B10D829E81F3200588AE7 /* LocationFetcher.swift */,
+				01BA704129E02B510049EB22 /* ImagePicker.swift */,
+				01BA704329E02BC40049EB22 /* ImageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		01BA702329E027280049EB22 = {
 			isa = PBXGroup;
 			children = (
@@ -65,15 +91,10 @@
 		01BA702E29E027280049EB22 /* PhotoList */ = {
 			isa = PBXGroup;
 			children = (
+				011B10DA29E8203A00588AE7 /* Info.plist */,
 				01BA702F29E027280049EB22 /* PhotoListApp.swift */,
-				01BA703129E027280049EB22 /* ContentView.swift */,
-				01BA703D29E02A050049EB22 /* PhotoListView.swift */,
-				01BA703F29E02A180049EB22 /* ImportView.swift */,
-				01BA704529E031780049EB22 /* DetailedView.swift */,
-				01BA704729E03B110049EB22 /* EditView.swift */,
-				01515DFD29E5D0DE001F3296 /* SettingsView.swift */,
-				01BA704129E02B510049EB22 /* ImagePicker.swift */,
-				01BA704329E02BC40049EB22 /* Model.swift */,
+				011B10DB29E8A86500588AE7 /* View */,
+				011B10DD29E8AB4600588AE7 /* Model */,
 				01BA703329E027280049EB22 /* Assets.xcassets */,
 				01BA703529E027280049EB22 /* Preview Content */,
 			);
@@ -160,10 +181,11 @@
 			files = (
 				01BA703229E027280049EB22 /* ContentView.swift in Sources */,
 				01BA704029E02A180049EB22 /* ImportView.swift in Sources */,
+				011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */,
 				01BA704829E03B110049EB22 /* EditView.swift in Sources */,
 				01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */,
 				01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */,
-				01BA704429E02BC40049EB22 /* Model.swift in Sources */,
+				01BA704429E02BC40049EB22 /* ImageModel.swift in Sources */,
 				01BA704629E031780049EB22 /* DetailedView.swift in Sources */,
 				01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */,
 				01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */,
@@ -297,6 +319,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotoList/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give access for the purpose of adding location information to photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -325,6 +349,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotoList/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give access for the purpose of adding location information to photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
