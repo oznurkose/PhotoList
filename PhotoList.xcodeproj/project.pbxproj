@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B10D829E81F3200588AE7 /* LocationFetcher.swift */; };
 		01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01515DFD29E5D0DE001F3296 /* SettingsView.swift */; };
+		015AE30E29E9B96300ADD172 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015AE30D29E9B96300ADD172 /* MapView.swift */; };
 		01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* PhotoListApp.swift */; };
 		01BA703229E027280049EB22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703129E027280049EB22 /* ContentView.swift */; };
 		01BA703429E027280049EB22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BA703329E027280049EB22 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		011B10D829E81F3200588AE7 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		011B10DA29E8203A00588AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01515DFD29E5D0DE001F3296 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		015AE30D29E9B96300ADD172 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = ../../MapView.swift; sourceTree = "<group>"; };
 		01BA702C29E027280049EB22 /* PhotoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01BA702F29E027280049EB22 /* PhotoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListApp.swift; sourceTree = "<group>"; };
 		01BA703129E027280049EB22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				01BA703F29E02A180049EB22 /* ImportView.swift */,
 				01BA704529E031780049EB22 /* DetailedView.swift */,
 				01BA704729E03B110049EB22 /* EditView.swift */,
+				015AE30D29E9B96300ADD172 /* MapView.swift */,
 				01515DFD29E5D0DE001F3296 /* SettingsView.swift */,
 			);
 			path = View;
@@ -182,6 +185,7 @@
 				01BA703229E027280049EB22 /* ContentView.swift in Sources */,
 				01BA704029E02A180049EB22 /* ImportView.swift in Sources */,
 				011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */,
+				015AE30E29E9B96300ADD172 /* MapView.swift in Sources */,
 				01BA704829E03B110049EB22 /* EditView.swift in Sources */,
 				01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */,
 				01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */,

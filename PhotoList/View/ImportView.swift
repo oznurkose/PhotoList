@@ -24,6 +24,8 @@ struct ImportView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
     @State var annotations = [ImageData.MapAnnotations]()
     
+    @State private var addLocation = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -71,26 +73,40 @@ struct ImportView: View {
                         TextField("Give a name ✍🏼", text: $imageName)
                             .textFieldStyle(.roundedBorder)
                     }
-                    .padding(.horizontal, 50)
+                    .padding(.horizontal, 10)
+                    
                     
                     Section {
-                        ZStack {
-                            Map(coordinateRegion: $region, annotationItems: annotations) {
-                                MapMarker(coordinate: $0.location)
+                        if addLocation {
+                            ZStack {
+                                Map(coordinateRegion: $region, annotationItems: annotations) {
+                                    MapMarker(coordinate: $0.location)
+                                }
+                                .frame(height: 200)
+                                
+                                Circle()
+                                    .strokeBorder(.red)
+                                    .frame(width: 32, height: 32)
                             }
-                            .frame(height: 200)
-                            
-                            Circle()
-                                .strokeBorder(.red)
-                                .frame(width: 32, height: 32)
+                            .onTapGesture {
+                                annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
+                            }
                         }
-                        .onTapGesture {
-                            annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
+                        else {
+                            Spacer()
+                            Button("Tap to add location") {
+                                //
+                                addLocation = true
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .padding()
+                            Spacer()
                         }
+                        
                         
                         
                     }
-                    .padding(50)
+                    .padding(.horizontal, 10)
                     
                 }
                 .sheet(isPresented: $isImagePicker) {

@@ -20,11 +20,19 @@ struct ContentView: View {
                     Label("Photos", systemImage: "photo.on.rectangle")
                 }
             
+            MapView()
+                .environmentObject(images)
+                .tabItem {
+                    Label("Map", systemImage: "mappin.and.ellipse")
+                }
+            
             SettingsView()
                 .environmentObject(images)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
+            
+           
 
             
         }.environmentObject(settings)
