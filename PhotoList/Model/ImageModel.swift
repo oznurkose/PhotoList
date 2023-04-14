@@ -13,7 +13,21 @@ struct ImageData: Identifiable, Codable {
     var name: String
     let image: UIImage
     let date: Date
-    var location: CLLocationCoordinate2D
+    var locationData: MapAnnotations
+    
+    struct MapAnnotations: Identifiable {
+        let id: UUID
+        var latitude: CLLocationDegrees
+        var longitude: CLLocationDegrees
+        var location: CLLocationCoordinate2D
+        
+        init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+            self.id = UUID()
+            self.latitude = latitude
+            self.longitude = longitude
+            self.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,12 +38,12 @@ struct ImageData: Identifiable, Codable {
         case longitude
     }
     
-    init(id: UUID, name: String, image: UIImage, date: Date, location: CLLocationCoordinate2D) {
+    init(id: UUID, name: String, image: UIImage, date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.id = id
         self.name = name
         self.image = image
         self.date = date
-        self.location = location
+        self.locationData = MapAnnotations(latitude: latitude, longitude: longitude)
     }
     
     init(from decoder: Decoder) throws {
@@ -39,7 +53,7 @@ struct ImageData: Identifiable, Codable {
         date = try container.decode(Date.self, forKey: .date)
         let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
-        location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        locationData = MapAnnotations(latitude: latitude, longitude: longitude)
         let imageData = try container.decode(Data.self, forKey: .imageData)
         image = UIImage(data: imageData) ?? UIImage(named: "sicily")!
     }
@@ -51,8 +65,8 @@ struct ImageData: Identifiable, Codable {
             try container.encode(id, forKey: .id)
             try container.encode(name, forKey: .name)
             try container.encode(date, forKey: .date)
-            try container.encode(location.latitude, forKey: .latitude)
-            try container.encode(location.longitude, forKey: .longitude)
+            try container.encode(locationData.latitude, forKey: .latitude)
+            try container.encode(locationData.longitude, forKey: .longitude)
             if let imageData = image.jpegData(compressionQuality: 0.8) {
                 try container.encode(imageData, forKey: .imageData)
             }
@@ -135,8 +149,8 @@ class ImageModel: ObservableObject {
 
 
 extension ImageModel {
-    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now, location: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417)),
-                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now, location: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417))])
+    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now, latitude: 37.785834, longitude: -122.406417),
+                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now, latitude: 37.785834, longitude: -122.406417)])
 }
 
 

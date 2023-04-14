@@ -12,7 +12,8 @@ struct ImportView: View {
     @State private var isImagePicker = false
     
     @State private var imageName = ""
-    @State private var showingAlert = false
+    @State private var successAlert = false
+    @State private var errorAlert = false
     @EnvironmentObject var images: ImageModel
     @EnvironmentObject var locationFetcher: LocationFetcher
     
@@ -20,80 +21,120 @@ struct ImportView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
     
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+    @State var annotations = [ImageData.MapAnnotations]()
+    
     var body: some View {
         NavigationView {
-            VStack {
-                //select an image
-                Group {
-                    if image == nil {
-                        ZStack {
-                            ZStack(alignment: .bottomTrailing) {
-                                // image frame
-                                Circle()
-                                    .strokeBorder(.blue, lineWidth:1)
-                                    .frame(width: 200, height: 200)
-                                
-                                Image(systemName: "plus.circle")
-                                    .background(isDarkMode ? .black : .white)
-                                    .frame(width: 58, height: 58)
-                                    .foregroundColor(.blue)
-                                    .font(.title)
-                                }
-                            Image(systemName: "photo.on.rectangle")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(70)
-                                .frame(width: 250, height: 250)
-                                .foregroundColor(.blue)
-                                .clipShape(Circle())
-                            
-                            
-                        }
-                     
-                          
-                    }
-                    else {
-                        Image(uiImage: image!)
-                            .resizable()
-                        //   .frame(height: 350)
-                            .scaledToFit()
-                    }
-                }
-              
-                .onTapGesture {
-                    isImagePicker = true
-                }
-                Section {
-                    TextField("Give a name ✍🏼", text: $imageName)
-                        .textFieldStyle(.roundedBorder)
-                }
-                .padding(50)
-                
-                
-            }
-            .sheet(isPresented: $isImagePicker) {
-                ImagePicker(image: $image)
-            }
-            .alert("Image saved successfuly!", isPresented: $showingAlert) {
-                Button("OK") {
-                    dismiss()
-                }
-            }
-            .toolbar {
-                ToolbarItem {
-                    Button("Save") {
-                        //
+            ScrollView {
+                VStack {
+                    Group {
                         if image == nil {
-                            // show alert
+                            // image selection button
+                            ZStack {
+                                ZStack(alignment: .bottomTrailing) {
+                                    // image frame
+                                    Circle()
+                                        .strokeBorder(.blue, lineWidth:1)
+                                        .frame(width: 200, height: 200)
+                                    
+                                    Image(systemName: "plus.circle")
+                                        .background(isDarkMode ? .black : .white)
+                                        .frame(width: 58, height: 58)
+                                        .foregroundColor(.blue)
+                                        .font(.title)
+                                }
+                                Image(systemName: "photo.on.rectangle")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .padding(70)
+                                    .frame(width: 250, height: 250)
+                                    .foregroundColor(.blue)
+                                    .clipShape(Circle())
+                                
+                                
+                            }
+                            
+                            
                         }
                         else {
-                            let imageData = ImageData(id: UUID(), name: imageName, image: image!, date: Date.now, location: CLLocationCoordinate2D(latitude: locationFetcher.lastKnownLocation!.latitude, longitude: locationFetcher.lastKnownLocation!.longitude))
-                            images.add(image: imageData)
-                            ImageModel.save(images: images.images)
-                            showingAlert = true
-                            print(images)
+                            Image(uiImage: image!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 300)
+                        }
+                    }
+                    .onTapGesture {
+                        isImagePicker = true
+                    }
+                    Section {
+                        TextField("Give a name ✍🏼", text: $imageName)
+                            .textFieldStyle(.roundedBorder)
+                    }
+                    .padding(.horizontal, 50)
+                    
+                    Section {
+                        ZStack {
+                            Map(coordinateRegion: $region, annotationItems: annotations) {
+                                MapMarker(coordinate: $0.location)
+                            }
+                            .frame(height: 200)
+                            
+                            Circle()
+                                .strokeBorder(.red)
+                                .frame(width: 32, height: 32)
+                        }
+                        .onTapGesture {
+                            annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
                         }
                         
+                        
+                    }
+                    .padding(50)
+                    
+                }
+                .sheet(isPresented: $isImagePicker) {
+                    ImagePicker(image: $image)
+                }
+                .alert("Image saved successfuly!", isPresented: $successAlert) {
+                    Button("OK") {
+                        dismiss()
+                    }
+                }
+                .alert("You have to select an image!", isPresented: $errorAlert) {
+                    //
+                }
+                .toolbar {
+                    ToolbarItem {
+                        Button("Save") {
+                            //
+                            if image == nil {
+                                // show alert
+                                errorAlert = true
+                                
+                            }
+                            else {
+                                let imageData =
+                                ImageData(id: UUID(),
+                                          name: imageName,
+                                          image: image!,
+                                          date: Date.now,
+                                          latitude:
+                                            annotations.isEmpty ?
+                                          region.center.latitude :
+                                            annotations[0].latitude,
+                                          longitude:
+                                            annotations.isEmpty ?
+                                          region.center.longitude :
+                                            annotations[0].longitude)
+                                
+                                images.add(image: imageData)
+                                ImageModel.save(images: images.images)
+                                successAlert = true
+                                print(images)
+                            }
+                            
+                        }
                     }
                 }
             }

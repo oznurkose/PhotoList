@@ -13,9 +13,15 @@ struct DetailedView: View {
     @EnvironmentObject var images: ImageModel
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
-    @State var region = MKCoordinateRegion(center: ImageModel.ImagesSample.images[0].location,
-                                           latitudinalMeters: 1000,
-                                           longitudinalMeters: 1000)
+    
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
+                                           span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+    
+//    var region2: MKCoordinateRegion {
+//        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: image.locationData.latitude, longitude: image.locationData.longitude),
+//                                               span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+//    }
+    @State var annotations = [ImageData.MapAnnotations]()
     
     
     var body: some View {
@@ -50,7 +56,7 @@ struct DetailedView: View {
                             Text("\(image.name)")
                                 .font(.headline)
                             
-                            Map(coordinateRegion: $region, annotationItems: ImageModel.ImagesSample.images) {
+                            Map(coordinateRegion: $region, annotationItems: [image.locationData]) {
                                 MapMarker(coordinate: $0.location)
                             }
                             .frame(height: 250)
@@ -73,6 +79,7 @@ struct DetailedView: View {
             .onAppear {
                 if let index = images.images.firstIndex(where: { $0.id == image.id }) {
                     image = images.images[index] }
+                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: image.locationData.latitude, longitude: image.locationData.longitude), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
             }
             
         }
