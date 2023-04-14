@@ -129,8 +129,8 @@ class ImageModel: ObservableObject {
         //self.save(images: self.images)
     }
     
-    func remove(at index: IndexSet) {
-        self.images.remove(atOffsets: index)
+    func remove(at index: Int) {
+        self.images.remove(at: index)
     }
     
     func add(image: ImageData) {

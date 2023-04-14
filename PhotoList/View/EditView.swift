@@ -4,33 +4,66 @@
 //
 //  Created by Öznur Köse on 7.04.2023.
 //
-
+import MapKit
 import SwiftUI
 
 struct EditView: View {
     @State var image: ImageData
     @EnvironmentObject var images: ImageModel
     @Environment(\.dismiss) var dismiss
-    
+    @State private var segmentedView = "Photo"
+    var segments = ["Photo", "Location"]
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
+                                           span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+    @State var annotations = [ImageData.MapAnnotations]()
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
-                    TextField("Edit", text: $image.name)
-                        .font(.headline)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                    
-                    
-                    Image(uiImage: image.image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 500)
-                        .padding()
+                Picker("Detailed view selection", selection: $segmentedView) {
+                    ForEach(segments, id: \.self) { segment in
+                        Text("\(segment)")
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding([.bottom, .horizontal])
+                
+                if segmentedView == "Photo" {
+                    VStack {
+                        TextField("Edit", text: $image.name)
+                            .font(.headline)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.horizontal)
+                        
+                        
+                        Image(uiImage: image.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 500)
+                            .padding()
+                        
+                    }
                     
                 }
-                
+                else {
+                    VStack {
+                        Text("\(image.name)")
+                            .font(.headline)
+                        ZStack {
+                            Map(coordinateRegion: $region, annotationItems: annotations) {
+                                MapMarker(coordinate: $0.location)
+                            }
+                            .frame(height: 500)
+                            Circle()
+                                .strokeBorder(.red)
+                                .frame(width: 32, height: 32)
+                        }
+                        .onTapGesture {
+                            annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
+                        }
+                        
+                    }
+                }
             }
             
         }
@@ -39,6 +72,7 @@ struct EditView: View {
                 Button("Save") {
                     //
                     images.delete(image: image)
+                    image.locationData = annotations[0]
                     images.add(image: image)
                     ImageModel.save(images: images.images)
                     print(images)
@@ -46,7 +80,23 @@ struct EditView: View {
                 }
             }
         }
-        
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    //
+                    images.delete(image: image)
+                    ImageModel.save(images: images.images)
+                    dismiss()
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
+        }
+        .onAppear {
+            region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: image.locationData.latitude, longitude: image.locationData.longitude), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+            
+            annotations = [ImageData.MapAnnotations.init(latitude: image.locationData.latitude, longitude: image.locationData.longitude)]
+        }
     }
     
 }

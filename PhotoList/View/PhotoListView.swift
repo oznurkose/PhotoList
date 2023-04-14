@@ -59,8 +59,11 @@ struct PhotoListView: View {
                     }
                    
                     } .onDelete { index in
-                        images.remove(at: index)
-                        ImageModel.save(images: images.images)
+                        if let imageIndex = images.images.firstIndex(where: { $0.id == filteredImages[index.first!].id } ) {
+                            images.remove(at: imageIndex)
+                            ImageModel.save(images: images.images)
+                        }
+                        
                     
                 }
                 

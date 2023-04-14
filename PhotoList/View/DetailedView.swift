@@ -59,7 +59,7 @@ struct DetailedView: View {
                             Map(coordinateRegion: $region, annotationItems: [image.locationData]) {
                                 MapMarker(coordinate: $0.location)
                             }
-                            .frame(height: 250)
+                            .frame(height: 500)
                         }
                     }
                 }
