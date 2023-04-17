@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 
 struct ImageData: Identifiable, Codable {
+//    static func == (lhs: ImageData, rhs: ImageData) -> Bool {
+//        lhs.id == rhs.id
+//    }
+//
     let id: UUID
     var name: String
     let image: UIImage
@@ -83,6 +87,10 @@ struct ImageData: Identifiable, Codable {
 
 
 class ImageModel: ObservableObject {
+//    static func == (lhs: ImageModel, rhs: ImageModel) -> Bool {
+//        lhs.images == rhs.images
+//    }
+//
     @Published var images = [ImageData]()
     
     init(array: [ImageData] = [ImageData]()) {

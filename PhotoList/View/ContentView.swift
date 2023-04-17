@@ -16,18 +16,24 @@ struct ContentView: View {
         TabView {
             PhotoListView()
                 .environmentObject(images)
+                .environmentObject(settings)
+                .environmentObject(locationFetcher)
                 .tabItem {
                     Label("Photos", systemImage: "photo.on.rectangle")
                 }
             
             MapView()
                 .environmentObject(images)
+                .environmentObject(settings)
+                .environmentObject(locationFetcher)
                 .tabItem {
                     Label("Map", systemImage: "mappin.and.ellipse")
                 }
-            
+
             SettingsView()
                 .environmentObject(images)
+                .environmentObject(settings)
+                .environmentObject(locationFetcher)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
@@ -35,8 +41,7 @@ struct ContentView: View {
            
 
             
-        }.environmentObject(settings)
-        .environmentObject(locationFetcher)
+        }
        
      
         
