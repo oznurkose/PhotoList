@@ -9,15 +9,12 @@ import Foundation
 import SwiftUI
 
 struct ImageData: Identifiable, Codable {
-//    static func == (lhs: ImageData, rhs: ImageData) -> Bool {
-//        lhs.id == rhs.id
-//    }
-//
     let id: UUID
     var name: String
     let image: UIImage
     let date: Date
     var locationData: MapAnnotations
+    var isFavorite: Bool = false
     
     struct MapAnnotations: Identifiable {
         let id: UUID
@@ -40,6 +37,7 @@ struct ImageData: Identifiable, Codable {
         case date
         case latitude
         case longitude
+        case fav
     }
     
     init(id: UUID, name: String, image: UIImage, date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -55,6 +53,7 @@ struct ImageData: Identifiable, Codable {
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         date = try container.decode(Date.self, forKey: .date)
+        isFavorite = try container.decode(Bool.self, forKey: .fav)
         let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
         locationData = MapAnnotations(latitude: latitude, longitude: longitude)
@@ -69,6 +68,7 @@ struct ImageData: Identifiable, Codable {
             try container.encode(id, forKey: .id)
             try container.encode(name, forKey: .name)
             try container.encode(date, forKey: .date)
+            try container.encode(isFavorite, forKey: .fav)
             try container.encode(locationData.latitude, forKey: .latitude)
             try container.encode(locationData.longitude, forKey: .longitude)
             if let imageData = image.jpegData(compressionQuality: 0.8) {
@@ -164,4 +164,5 @@ extension ImageModel {
 
 class Settings: ObservableObject {
     @Published var nameOnly = false
+    @Published var favOnly = false
 }

@@ -38,7 +38,18 @@ struct PhotoListView: View {
     }
     
     var filteredImages: [ImageData] {
-        settings.nameOnly ? searchImages.filter { $0.name.trimmingCharacters(in: .whitespacesAndNewlines) != "" } : searchImages
+        if settings.nameOnly && settings.favOnly {
+            return searchImages.filter { $0.isFavorite && $0.name.trimmingCharacters(in: .whitespacesAndNewlines) != "" }
+        }
+        else if settings.nameOnly {
+            return searchImages.filter { $0.name.trimmingCharacters(in: .whitespacesAndNewlines) != "" }
+        }
+        else if settings.favOnly {
+            return searchImages.filter { $0.isFavorite }
+        }
+        else {
+            return searchImages
+        }
     }
 
     
@@ -55,6 +66,10 @@ struct PhotoListView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)
+                            if image.isFavorite {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                    

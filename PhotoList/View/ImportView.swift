@@ -115,12 +115,12 @@ struct ImportView: View {
                 .sheet(isPresented: $isImagePicker) {
                     ImagePicker(image: $image)
                 }
-                .alert("Image saved successfuly!", isPresented: $successAlert) {
+                .alert("Image saved successfuly!🎉", isPresented: $successAlert) {
                     Button("OK") {
                         dismiss()
                     }
                 }
-                .alert("You have to select an image!", isPresented: $errorAlert) {
+                .alert("You have to select an image!📷", isPresented: $errorAlert) {
                     //
                 }
                 .toolbar {

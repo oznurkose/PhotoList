@@ -22,8 +22,12 @@ struct SettingsView: View {
                     Toggle("Show photos with name", isOn: $settings.nameOnly)
                 }
                 Section {
+                    Toggle("Show favorite photos only", isOn: $settings.favOnly)
+                }
+                Section {
                     Toggle("Dark mode", isOn: $isDarkMode)
                 }
+                
             }
             .navigationTitle("Settings")
             

@@ -36,12 +36,25 @@ struct EditView: View {
                             .padding(.horizontal, 10)
                         
                         
+                        
                         Image(uiImage: image.image)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 500)
                             .padding()
                         
+                        Button {
+                            image.isFavorite.toggle()
+                        } label: {
+                            if image.isFavorite {
+                                Label("Remove from favorites", systemImage: "heart.fill")
+                                    .foregroundColor(.red)
+                            }
+                            else {
+                                Label("Make favorite", systemImage: "heart")
+                                    .foregroundColor(.blue)
+                            }
+                        }
                     }
                     
                 }
