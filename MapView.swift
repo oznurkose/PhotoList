@@ -8,35 +8,41 @@ import MapKit
 import SwiftUI
 
 struct PlaceAnnotationView: View {
-  @State private var showTitle = true
-  
-  let title: String
-  
-  var body: some View {
-    VStack(spacing: 0) {
-      Text(title)
-        .font(.callout)
-        .padding(5)
-        .background(Color(.white))
-        .cornerRadius(10)
-        .opacity(showTitle ? 0 : 1)
-
-      
-      Image(systemName: "mappin.circle.fill")
-        .font(.title)
-        .foregroundColor(.red)
-      
-      Image(systemName: "arrowtriangle.down.fill")
-        .font(.caption)
-        .foregroundColor(.red)
-        .offset(x: 0, y: -5)
+    
+    @State var showTitle = true
+    @State var image: ImageData
+    
+    let title: String
+    
+    var body: some View {
+        NavigationLink(destination: DetailedView(image: image)) {
+            VStack(spacing: 0) {
+                Text(title.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Name Unknown" : title)
+                    .font(.callout)
+                    .padding(5)
+                    .background(Color(.white))
+                    .cornerRadius(10)
+                    .opacity(showTitle ? 0 : 1)
+                
+                
+                Image(systemName: "mappin.circle.fill")
+                    .font(.title)
+                    .foregroundColor(.red)
+                    .background(.white, in: Circle())
+                
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .offset(x: 0, y: -5)
+            }
+            .onTapGesture {
+                withAnimation(.easeInOut) {
+                    showTitle.toggle()
+                }
+            }
+        }
+        
     }
-    .onTapGesture {
-      withAnimation(.easeInOut) {
-        showTitle.toggle()
-      }
-    }
-  }
 }
 
 struct MapView: View {
@@ -55,7 +61,7 @@ struct MapView: View {
                                         Button {
                                             selectedAnnotation = img
                                         } label: {
-                                            PlaceAnnotationView(title: img.name)
+                                            PlaceAnnotationView(image: img, title: img.name)
                                         }
                                     }
                 }

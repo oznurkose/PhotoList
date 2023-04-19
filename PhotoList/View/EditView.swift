@@ -33,7 +33,7 @@ struct EditView: View {
                         TextField("Edit", text: $image.name)
                             .font(.headline)
                             .textFieldStyle(.roundedBorder)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 10)
                         
                         
                         Image(uiImage: image.image)

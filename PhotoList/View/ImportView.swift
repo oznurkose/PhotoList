@@ -70,8 +70,11 @@ struct ImportView: View {
                         isImagePicker = true
                     }
                     Section {
-                        TextField("Give a name ✍🏼", text: $imageName)
-                            .textFieldStyle(.roundedBorder)
+                        HStack {
+                            TextField("Name", text: $imageName, prompt: Text("Name"))
+                                .textFieldStyle(.roundedBorder)
+                        }
+                       
                     }
                     .padding(.horizontal, 10)
                     
