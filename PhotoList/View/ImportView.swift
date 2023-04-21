@@ -8,7 +8,8 @@ import MapKit
 import SwiftUI
 
 struct ImportView: View {
-    @State private var image: UIImage?
+    @State var selectedImages = [UIImage]()
+    //@State var image: UIImage?
     @State private var isImagePicker = false
     
     @State private var imageName = ""
@@ -26,13 +27,14 @@ struct ImportView: View {
     
     @State private var addLocation = false
     @State private var addPhoto = false
+    var columns = [GridItem(.adaptive(minimum: 70)), GridItem(.adaptive(minimum: 70))]
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     Group {
-                        if image == nil {
+                        if selectedImages.isEmpty {
                             // image selection button
                             ZStack {
                                 ZStack(alignment: .bottomTrailing) {
@@ -54,17 +56,21 @@ struct ImportView: View {
                                     .frame(width: 250, height: 250)
                                     .foregroundColor(.blue)
                                     .clipShape(Circle())
-                                
-                                
                             }
-                            
-                            
                         }
                         else {
-                            Image(uiImage: image!)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 300)
+                            ForEach(selectedImages, id: \.self) { img in
+                                LazyVGrid(columns: columns) {
+                                    
+                                    Image(uiImage: img)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 70)
+                                        .cornerRadius(10)
+                                        .shadow(color: Color.primary.opacity(0.3), radius: 1)
+                                    
+                                }
+                            }
                         }
                     }
                     .onTapGesture {
@@ -75,7 +81,6 @@ struct ImportView: View {
                             TextField("Name", text: $imageName, prompt: Text("Name"))
                                 .textFieldStyle(.roundedBorder)
                         }
-                       
                     }
                     .padding(.horizontal, 10)
                     
@@ -120,7 +125,7 @@ struct ImportView: View {
                     
                 }
                 .sheet(isPresented: $isImagePicker) {
-                    ImagePicker(image: $image)
+                    ImagePicker(images: self.$selectedImages)
                 }
                 .alert("Image saved successfuly!🎉", isPresented: $successAlert) {
                     Button("OK") {
@@ -134,7 +139,7 @@ struct ImportView: View {
                     ToolbarItem {
                         Button("Save") {
                             //
-                            if image == nil {
+                            if $selectedImages.isEmpty {
                                 // show alert
                                 errorAlert = true
                                 
@@ -143,7 +148,7 @@ struct ImportView: View {
                                 let imageData =
                                 ImageData(id: UUID(),
                                           name: imageName,
-                                          image: image!,
+                                          image: selectedImages,
                                           date: Date.now,
                                           latitude:
                                             annotations.isEmpty ?
@@ -168,9 +173,9 @@ struct ImportView: View {
     }
 }
 
-struct ImportView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImportView()
-            .environmentObject(ImageModel.ImagesSample)
-    }
-}
+//struct ImportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ImportView()
+//            .environmentObject(ImageModel.ImagesSample)
+//    }
+//}

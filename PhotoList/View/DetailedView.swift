@@ -17,6 +17,8 @@ struct DetailedView: View {
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
                                            span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
     
+    var grids = [GridItem(.adaptive(minimum: 50))]
+    
 //    var region2: MKCoordinateRegion {
 //        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: image.locationData.latitude, longitude: image.locationData.longitude),
 //                                               span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
@@ -44,11 +46,15 @@ struct DetailedView: View {
                             Text("\(image.name)")
                                 .font(.headline)
                             
-                            Image(uiImage: image.image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame( height: 500)
-                                .padding()
+                            ForEach(image.image, id: \.self) { img in
+                                LazyVGrid(columns: grids) {
+                                    Image(uiImage: img)
+                                        .resizable()
+                                        .scaledToFit()
+                                        //.frame(height: 500)
+                                        //.padding()
+                                }
+                            }
                         }
                     }
                     else {

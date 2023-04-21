@@ -11,7 +11,7 @@ import SwiftUI
 struct ImageData: Identifiable, Codable {
     let id: UUID
     var name: String
-    let image: UIImage
+    var image: [UIImage]
     let date: Date
     var locationData: MapAnnotations
     var isFavorite: Bool = false
@@ -40,7 +40,7 @@ struct ImageData: Identifiable, Codable {
         case fav
     }
     
-    init(id: UUID, name: String, image: UIImage, date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    init(id: UUID, name: String, image: [UIImage], date: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.id = id
         self.name = name
         self.image = image
@@ -57,8 +57,16 @@ struct ImageData: Identifiable, Codable {
         let latitude = try container.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try container.decode(CLLocationDegrees.self, forKey: .longitude)
         locationData = MapAnnotations(latitude: latitude, longitude: longitude)
-        let imageData = try container.decode(Data.self, forKey: .imageData)
-        image = UIImage(data: imageData) ?? UIImage(named: "sicily")!
+        let imageData = try container.decode([Data].self, forKey: .imageData)
+        var images = [UIImage]()
+        if imageData.isEmpty == false {
+            for img in imageData {
+                images.insert(UIImage(data: img)!, at: 0)
+            }
+        }
+        image = images
+        
+        //image = [UIImage(data: imageData)] ?? [UIImage(named: "sicily")!]
     }
 
     func encode(to encoder: Encoder) throws {
@@ -71,9 +79,15 @@ struct ImageData: Identifiable, Codable {
             try container.encode(isFavorite, forKey: .fav)
             try container.encode(locationData.latitude, forKey: .latitude)
             try container.encode(locationData.longitude, forKey: .longitude)
-            if let imageData = image.jpegData(compressionQuality: 0.8) {
-                try container.encode(imageData, forKey: .imageData)
+            var imageDataArr = [Data]()
+            for img in image {
+                if let imageData = img.jpegData(compressionQuality: 0.8) {
+                    //try container.encode(imageData, forKey: .imageData)
+                    imageDataArr.insert(imageData, at: 0)
+                }
             }
+            try container.encode(imageDataArr, forKey: .imageData)
+            
         }
         
         catch {
@@ -157,8 +171,8 @@ class ImageModel: ObservableObject {
 
 
 extension ImageModel {
-    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: UIImage(named: "japan")!, date: Date.now, latitude: 37.785834, longitude: -122.406417),
-                                              ImageData(id: UUID(), name: "Sicily", image: UIImage(named: "sicily")!, date: Date.now, latitude: 37.785834, longitude: -122.406417)])
+    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: [UIImage(named: "japan")!], date: Date.now, latitude: 37.785834, longitude: -122.406417),
+                                              ImageData(id: UUID(), name: "Sicily", image: [UIImage(named: "sicily")!], date: Date.now, latitude: 37.785834, longitude: -122.406417)])
 }
 
 

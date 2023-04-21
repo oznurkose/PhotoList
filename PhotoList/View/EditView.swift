@@ -17,6 +17,8 @@ struct EditView: View {
                                            span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
     @State var annotations = [ImageData.MapAnnotations]()
     
+    var grids = [GridItem(.adaptive(minimum: 50))]
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -35,13 +37,17 @@ struct EditView: View {
                             .textFieldStyle(.roundedBorder)
                             .padding(.horizontal, 10)
                         
+                        ForEach(image.image, id: \.self) { img in
+                            LazyVGrid(columns: grids) {
+                                Image(uiImage: img)
+                                    .resizable()
+                                    .scaledToFit()
+                                    //.frame(height: 500)
+                                    //.padding()
+                            }
+                        }
                         
-                        
-                        Image(uiImage: image.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 500)
-                            .padding()
+                       
                         
                         Button {
                             image.isFavorite.toggle()

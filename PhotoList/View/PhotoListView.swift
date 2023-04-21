@@ -60,7 +60,7 @@ struct PhotoListView: View {
                 ForEach(filteredImages) { image in
                     NavigationLink(destination: DetailedView(image: image)) {
                         HStack {
-                            Image(uiImage: image.image)
+                            Image(uiImage: image.image[0])
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
