@@ -25,6 +25,7 @@ struct ImportView: View {
     @State var annotations = [ImageData.MapAnnotations]()
     
     @State private var addLocation = false
+    @State private var addPhoto = false
     
     var body: some View {
         NavigationView {
@@ -78,6 +79,12 @@ struct ImportView: View {
                     }
                     .padding(.horizontal, 10)
                     
+                    Section {
+                        Button("Tap to add more photos") {
+                            //
+                            isImagePicker = true
+                        }
+                    }
                     
                     Section {
                         if addLocation {

@@ -60,12 +60,14 @@ struct PhotoListView: View {
                 ForEach(filteredImages) { image in
                     NavigationLink(destination: DetailedView(image: image)) {
                         HStack {
-                            Text("\(image.name)")
-                            Spacer()
                             Image(uiImage: image.image)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                            
+                            Text("\(image.name)")
+                            Spacer()
                             if image.isFavorite {
                                 Image(systemName: "heart.fill")
                                     .foregroundColor(.red)
