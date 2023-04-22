@@ -63,14 +63,14 @@ struct ImportView: View {
                         else {
                             ForEach(selectedImages, id: \.self) { img in
                                 LazyVGrid(columns: columns) {
-                                    ZStack(alignment: .topTrailing) {
-                                        if isHover {
-                                            Image(systemName: "xmark.circle")
-                                                .onTapGesture {
-                                                    let ix = selectedImages.firstIndex(of: img)
-                                                    selectedImages.remove(at: ix!)
-                                                }
-                                        }
+                                    ZStack {
+                                        
+                                        Image(systemName: "xmark.circle")
+                                            .onTapGesture {
+                                                let ix = selectedImages.firstIndex(of: img)
+                                                selectedImages.remove(at: ix!)
+                                            }
+                                        
                                         
                                         Image(uiImage: img)
                                             .resizable()
