@@ -17,7 +17,7 @@ struct EditView: View {
                                            span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
     @State var annotations = [ImageData.MapAnnotations]()
     
-    var grids = [GridItem(.adaptive(minimum: 50))]
+    var columns = [GridItem(.adaptive(minimum: 100, maximum: 180)), GridItem(.adaptive(minimum: 100, maximum: 180))]
     
     var body: some View {
         NavigationView {
@@ -38,7 +38,7 @@ struct EditView: View {
                             .padding(.horizontal, 10)
                         
                         ForEach(image.image, id: \.self) { img in
-                            LazyVGrid(columns: grids) {
+                            LazyVGrid(columns: columns) {
                                 Image(uiImage: img)
                                     .resizable()
                                     .scaledToFit()
