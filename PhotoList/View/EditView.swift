@@ -13,11 +13,12 @@ struct EditView: View {
     @Environment(\.dismiss) var dismiss
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
+    @State private var isImagePicker = false
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
                                            span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
     @State var annotations = [ImageData.MapAnnotations]()
     
-    var columns = [GridItem(.adaptive(minimum: 100, maximum: 180)), GridItem(.adaptive(minimum: 100, maximum: 180))]
+    var columns = [GridItem(.adaptive(minimum: 200))]
     
     var body: some View {
         NavigationView {
@@ -32,6 +33,12 @@ struct EditView: View {
                 
                 if segmentedView == "Photo" {
                     VStack {
+                        Section {
+                            Button("Tap to add more photos") {
+                                //
+                                isImagePicker = true
+                            }
+                        }
                         TextField("Edit", text: $image.name)
                             .font(.headline)
                             .textFieldStyle(.roundedBorder)
@@ -39,11 +46,28 @@ struct EditView: View {
                         
                         ForEach(image.image, id: \.self) { img in
                             LazyVGrid(columns: columns) {
-                                Image(uiImage: img)
-                                    .resizable()
-                                    .scaledToFit()
+                                HStack(alignment: .top) {
+                                    
+                                    Image(uiImage: img)
+                                        .resizable()
+                                        .scaledToFit()
                                     //.frame(height: 500)
                                     //.padding()
+                                    
+                                    Image(systemName: "xmark.circle")
+                                        .foregroundColor(.red)
+                                        .onTapGesture {
+                                            
+                                        
+                                            
+                                            //images.delete(image: image)
+                                            let ix = image.image.firstIndex(of: img)
+                                            image.image.remove(at: ix!)
+                                            //images.add(image: image)
+                                            //ImageModel.save(images: images.images)
+                                            
+                                        }
+                                }
                             }
                         }
                         
@@ -61,6 +85,8 @@ struct EditView: View {
                                     .foregroundColor(.blue)
                             }
                         }
+                    }.sheet(isPresented: $isImagePicker) {
+                        ImagePicker(images: $image.image)
                     }
                     
                 }

@@ -27,9 +27,7 @@ struct ImportView: View {
     
     @State private var addLocation = false
     @State private var addPhoto = false
-    var columns = [GridItem(.adaptive(minimum: 100, maximum: 180)), GridItem(.adaptive(minimum: 100, maximum: 180))]
-    
-    @State var isHover = true
+    var columns = [GridItem(.adaptive(minimum: 200))]
     
     var body: some View {
         NavigationView {
@@ -63,24 +61,20 @@ struct ImportView: View {
                         else {
                             ForEach(selectedImages, id: \.self) { img in
                                 LazyVGrid(columns: columns) {
-                                    ZStack {
-                                        
-                                        Image(systemName: "xmark.circle")
-                                            .onTapGesture {
-                                                let ix = selectedImages.firstIndex(of: img)
-                                                selectedImages.remove(at: ix!)
-                                            }
-                                        
-                                        
+                                    HStack(alignment: .top) {
                                         Image(uiImage: img)
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 170)
                                             .cornerRadius(10)
                                             .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                                            .onHover {_ in
-                                                isHover = true
+                                        Image(systemName: "xmark.circle")
+                                            .foregroundColor(.red)
+                                            .onTapGesture {
+                                                let ix = selectedImages.firstIndex(of: img)
+                                                selectedImages.remove(at: ix!)
                                             }
+                                           
                                     }
                                     
                                     

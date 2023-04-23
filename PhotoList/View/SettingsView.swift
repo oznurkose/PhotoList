@@ -18,13 +18,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
+                Section("Display Options") {
                     Toggle("Show photos with name", isOn: $settings.nameOnly)
-                }
-                Section {
                     Toggle("Show favorite photos only", isOn: $settings.favOnly)
                 }
-                Section {
+                Section("Appearance") {
                     Toggle("Dark mode", isOn: $isDarkMode)
                 }
                 
