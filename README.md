@@ -1,1 +1,1 @@
-# PhotoList
+# VizManager
