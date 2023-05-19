@@ -25,11 +25,10 @@
 
 /* Begin PBXFileReference section */
 		011B10D829E81F3200588AE7 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
-		011B10DA29E8203A00588AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01515DFD29E5D0DE001F3296 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		015AE30D29E9B96300ADD172 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = ../../MapView.swift; sourceTree = "<group>"; };
 		016D67DD29F0675E00610BA4 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
-		01BA702C29E027280049EB22 /* PhotoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01BA702C29E027280049EB22 /* VizManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01BA702F29E027280049EB22 /* PhotoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListApp.swift; sourceTree = "<group>"; };
 		01BA703129E027280049EB22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		01BA703329E027280049EB22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,7 +80,7 @@
 		01BA702329E027280049EB22 = {
 			isa = PBXGroup;
 			children = (
-				01BA702E29E027280049EB22 /* PhotoList */,
+				01BA702E29E027280049EB22 /* VizManager */,
 				01BA702D29E027280049EB22 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,22 +88,21 @@
 		01BA702D29E027280049EB22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01BA702C29E027280049EB22 /* PhotoList.app */,
+				01BA702C29E027280049EB22 /* VizManager.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		01BA702E29E027280049EB22 /* PhotoList */ = {
+		01BA702E29E027280049EB22 /* VizManager */ = {
 			isa = PBXGroup;
 			children = (
-				011B10DA29E8203A00588AE7 /* Info.plist */,
 				01BA702F29E027280049EB22 /* PhotoListApp.swift */,
 				011B10DB29E8A86500588AE7 /* View */,
 				011B10DD29E8AB4600588AE7 /* Model */,
 				01BA703329E027280049EB22 /* Assets.xcassets */,
 				01BA703529E027280049EB22 /* Preview Content */,
 			);
-			path = PhotoList;
+			path = VizManager;
 			sourceTree = "<group>";
 		};
 		01BA703529E027280049EB22 /* Preview Content */ = {
@@ -118,9 +116,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		01BA702B29E027280049EB22 /* PhotoList */ = {
+		01BA702B29E027280049EB22 /* VizManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01BA703A29E027280049EB22 /* Build configuration list for PBXNativeTarget "PhotoList" */;
+			buildConfigurationList = 01BA703A29E027280049EB22 /* Build configuration list for PBXNativeTarget "VizManager" */;
 			buildPhases = (
 				01BA702829E027280049EB22 /* Sources */,
 				01BA702929E027280049EB22 /* Frameworks */,
@@ -130,9 +128,9 @@
 			);
 			dependencies = (
 			);
-			name = PhotoList;
+			name = VizManager;
 			productName = PhotoList;
-			productReference = 01BA702C29E027280049EB22 /* PhotoList.app */;
+			productReference = 01BA702C29E027280049EB22 /* VizManager.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -150,7 +148,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 01BA702729E027280049EB22 /* Build configuration list for PBXProject "PhotoList" */;
+			buildConfigurationList = 01BA702729E027280049EB22 /* Build configuration list for PBXProject "VizManager" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -163,7 +161,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				01BA702B29E027280049EB22 /* PhotoList */,
+				01BA702B29E027280049EB22 /* VizManager */,
 			);
 		};
 /* End PBXProject section */
@@ -324,10 +322,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotoList/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"VizManager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhotoList/Info.plist;
+				INFOPLIST_FILE = VizManager/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give access for the purpose of adding location information to photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,10 +352,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotoList/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"VizManager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhotoList/Info.plist;
+				INFOPLIST_FILE = VizManager/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give access for the purpose of adding location information to photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -380,7 +378,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01BA702729E027280049EB22 /* Build configuration list for PBXProject "PhotoList" */ = {
+		01BA702729E027280049EB22 /* Build configuration list for PBXProject "VizManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01BA703829E027280049EB22 /* Debug */,
@@ -389,7 +387,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01BA703A29E027280049EB22 /* Build configuration list for PBXNativeTarget "PhotoList" */ = {
+		01BA703A29E027280049EB22 /* Build configuration list for PBXNativeTarget "VizManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01BA703B29E027280049EB22 /* Debug */,
