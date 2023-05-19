@@ -11,7 +11,7 @@
 		01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01515DFD29E5D0DE001F3296 /* SettingsView.swift */; };
 		015AE30E29E9B96300ADD172 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015AE30D29E9B96300ADD172 /* MapView.swift */; };
 		016D67DE29F0675E00610BA4 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D67DD29F0675E00610BA4 /* AnnotationView.swift */; };
-		01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* PhotoListApp.swift */; };
+		01BA703029E027280049EB22 /* VizManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* VizManagerApp.swift */; };
 		01BA703229E027280049EB22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA703129E027280049EB22 /* ContentView.swift */; };
 		01BA703429E027280049EB22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BA703329E027280049EB22 /* Assets.xcassets */; };
 		01BA703729E027280049EB22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01BA703629E027280049EB22 /* Preview Assets.xcassets */; };
@@ -29,7 +29,7 @@
 		015AE30D29E9B96300ADD172 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = ../../MapView.swift; sourceTree = "<group>"; };
 		016D67DD29F0675E00610BA4 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		01BA702C29E027280049EB22 /* VizManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		01BA702F29E027280049EB22 /* PhotoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListApp.swift; sourceTree = "<group>"; };
+		01BA702F29E027280049EB22 /* VizManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizManagerApp.swift; sourceTree = "<group>"; };
 		01BA703129E027280049EB22 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		01BA703329E027280049EB22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01BA703629E027280049EB22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		01BA702E29E027280049EB22 /* VizManager */ = {
 			isa = PBXGroup;
 			children = (
-				01BA702F29E027280049EB22 /* PhotoListApp.swift */,
+				01BA702F29E027280049EB22 /* VizManagerApp.swift */,
 				011B10DB29E8A86500588AE7 /* View */,
 				011B10DD29E8AB4600588AE7 /* Model */,
 				01BA703329E027280049EB22 /* Assets.xcassets */,
@@ -193,7 +193,7 @@
 				01BA704229E02B510049EB22 /* ImagePicker.swift in Sources */,
 				01BA704429E02BC40049EB22 /* ImageModel.swift in Sources */,
 				01BA704629E031780049EB22 /* DetailedView.swift in Sources */,
-				01BA703029E027280049EB22 /* PhotoListApp.swift in Sources */,
+				01BA703029E027280049EB22 /* VizManagerApp.swift in Sources */,
 				01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
