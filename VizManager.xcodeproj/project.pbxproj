@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B10D829E81F3200588AE7 /* LocationFetcher.swift */; };
 		012138092A1A4FB600F8A5E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012138082A1A4FB600F8A5E9 /* MapView.swift */; };
+		0121380B2A1A6A0300F8A5E9 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121380A2A1A6A0300F8A5E9 /* ImageModel.swift */; };
 		01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01515DFD29E5D0DE001F3296 /* SettingsView.swift */; };
 		016D67DE29F0675E00610BA4 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D67DD29F0675E00610BA4 /* AnnotationView.swift */; };
 		01BA703029E027280049EB22 /* VizManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* VizManagerApp.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		011B10D829E81F3200588AE7 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		012138082A1A4FB600F8A5E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		0121380A2A1A6A0300F8A5E9 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		01515DFD29E5D0DE001F3296 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		016D67DD29F0675E00610BA4 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		01BA702C29E027280049EB22 /* VizManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 			children = (
 				011B10D829E81F3200588AE7 /* LocationFetcher.swift */,
 				01BA704129E02B510049EB22 /* ImagePicker.swift */,
+				0121380A2A1A6A0300F8A5E9 /* ImageModel.swift */,
 				01BA704329E02BC40049EB22 /* ImageModelView.swift */,
 			);
 			path = Model;
@@ -194,6 +197,7 @@
 				01BA704429E02BC40049EB22 /* ImageModelView.swift in Sources */,
 				01BA704629E031780049EB22 /* DetailedView.swift in Sources */,
 				01BA703029E027280049EB22 /* VizManagerApp.swift in Sources */,
+				0121380B2A1A6A0300F8A5E9 /* ImageModel.swift in Sources */,
 				01BA703E29E02A050049EB22 /* PhotoListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
