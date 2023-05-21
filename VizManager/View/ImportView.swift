@@ -15,7 +15,7 @@ struct ImportView: View {
     @State private var imageName = ""
     @State private var successAlert = false
     @State private var errorAlert = false
-    @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var images: ImageModelView
     @EnvironmentObject var locationFetcher: LocationFetcher
     
     @Environment(\.dismiss) var dismiss
@@ -170,7 +170,7 @@ struct ImportView: View {
                                             annotations[0].longitude)
                                 
                                 images.add(image: imageData)
-                                ImageModel.save(images: images.images)
+                                ImageModelView.save(images: images.images)
                                 successAlert = true
                                 print(images)
                             }

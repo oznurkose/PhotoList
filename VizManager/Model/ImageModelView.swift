@@ -100,7 +100,7 @@ struct ImageData: Identifiable, Codable {
     
 
 
-class ImageModel: ObservableObject {
+class ImageModelView: ObservableObject {
 //    static func == (lhs: ImageModel, rhs: ImageModel) -> Bool {
 //        lhs.images == rhs.images
 //    }
@@ -120,7 +120,7 @@ class ImageModel: ObservableObject {
     }
     
     static func save(images: [ImageData]) {
-        guard let url = ImageModel.getDocumentsURL() else { return }
+        guard let url = ImageModelView.getDocumentsURL() else { return }
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(images)
@@ -132,7 +132,7 @@ class ImageModel: ObservableObject {
     }
     
     func load() {
-        guard let url = ImageModel.getDocumentsURL() else { return }
+        guard let url = ImageModelView.getDocumentsURL() else { return }
         do {
             let decoder = JSONDecoder()
             let decodedImage = try decoder.decode([ImageData].self, from: Data(contentsOf: url))
@@ -170,8 +170,8 @@ class ImageModel: ObservableObject {
 }
 
 
-extension ImageModel {
-    static let ImagesSample =  ImageModel(array: [ImageData(id: UUID(), name: "Japan", image: [UIImage(named: "japan")!], date: Date.now, latitude: 37.785834, longitude: -122.406417),
+extension ImageModelView {
+    static let ImagesSample =  ImageModelView(array: [ImageData(id: UUID(), name: "Japan", image: [UIImage(named: "japan")!], date: Date.now, latitude: 37.785834, longitude: -122.406417),
                                               ImageData(id: UUID(), name: "Sicily", image: [UIImage(named: "sicily")!], date: Date.now, latitude: 37.785834, longitude: -122.406417)])
 }
 

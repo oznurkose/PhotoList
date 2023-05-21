@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhotoListView: View {
-    @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var images: ImageModelView
     @EnvironmentObject var settings: Settings
     @EnvironmentObject var locationFetcher: LocationFetcher
     
@@ -78,7 +78,7 @@ struct PhotoListView: View {
                     } .onDelete { index in
                         if let imageIndex = images.images.firstIndex(where: { $0.id == filteredImages[index.first!].id } ) {
                             images.remove(at: imageIndex)
-                            ImageModel.save(images: images.images)
+                            ImageModelView.save(images: images.images)
                         }
                         
                     
@@ -134,6 +134,6 @@ struct PhotoListView: View {
 struct PhotoListView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoListView()
-            .environmentObject(ImageModel.ImagesSample)
+            .environmentObject(ImageModelView.ImagesSample)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var images = ImageModel()
+    @StateObject var images = ImageModelView()
     @StateObject var settings = Settings()
     @StateObject var locationFetcher = LocationFetcher()
     
@@ -54,6 +54,6 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         ContentView()
-            .environmentObject(ImageModel.ImagesSample)
+            .environmentObject(ImageModelView.ImagesSample)
     }
 }
