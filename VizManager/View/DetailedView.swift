@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailedView: View {
     @State var image: ImageData
     @State private var showingEditScreen = false
-    @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var images: ImageModelView
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
     
@@ -87,7 +87,7 @@ struct DetailedView: View {
 
 struct DetailedView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedView(image: ImageModel.ImagesSample.images[0])
-            .environmentObject(ImageModel.ImagesSample)
+        DetailedView(image: ImageModelView.ImagesSample.images[0])
+            .environmentObject(ImageModelView.ImagesSample)
     }
 }

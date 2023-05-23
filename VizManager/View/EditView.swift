@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditView: View {
     @State var image: ImageData
-    @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var images: ImageModelView
     @Environment(\.dismiss) var dismiss
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
@@ -63,6 +63,7 @@ struct EditView: View {
                                             //images.delete(image: image)
                                             let ix = image.image.firstIndex(of: img)
                                             image.image.remove(at: ix!)
+                                            print("image deleting")
                                             //images.add(image: image)
                                             //ImageModel.save(images: images.images)
                                             
@@ -119,7 +120,7 @@ struct EditView: View {
                     images.delete(image: image)
                     image.locationData = annotations[0]
                     images.add(image: image)
-                    ImageModel.save(images: images.images)
+                    ImageModelView.save(images: images.images)
                     print(images)
                     dismiss()
                 }
@@ -130,8 +131,8 @@ struct EditView: View {
                 Button {
                     //
                     images.delete(image: image)
-                    ImageModel.save(images: images.images)
-                    dismiss()
+                    ImageModelView.save(images: images.images)
+                    dismiss.callAsFunction()
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
@@ -142,9 +143,11 @@ struct EditView: View {
             
             annotations = [ImageData.MapAnnotations.init(latitude: image.locationData.latitude, longitude: image.locationData.longitude)]
         }
+       
     }
     
 }
+    
 
 
 

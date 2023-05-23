@@ -15,7 +15,7 @@ struct ImportView: View {
     @State private var imageName = ""
     @State private var successAlert = false
     @State private var errorAlert = false
-    @EnvironmentObject var images: ImageModel
+    @EnvironmentObject var images: ImageModelView
     @EnvironmentObject var locationFetcher: LocationFetcher
     
     @Environment(\.dismiss) var dismiss
@@ -34,7 +34,7 @@ struct ImportView: View {
             ScrollView {
                 VStack {
                     Group {
-                        if selectedImages.isEmpty {
+                        if selectedImages.count == 0 {
                             // image selection button
                             ZStack {
                                 ZStack(alignment: .bottomTrailing) {
@@ -44,7 +44,7 @@ struct ImportView: View {
                                         .frame(width: 200, height: 200)
                                     
                                     Image(systemName: "plus.circle")
-                                        .background(isDarkMode ? .black : .white)
+                                        .background(Color(UIColor.systemBackground))
                                         .frame(width: 58, height: 58)
                                         .foregroundColor(.blue)
                                         .font(.title)
@@ -61,7 +61,7 @@ struct ImportView: View {
                         else {
                             ForEach(selectedImages, id: \.self) { img in
                                 LazyVGrid(columns: columns) {
-                                    HStack(alignment: .top) {
+                                    HStack(alignment: .top, spacing: 0) {
                                         Image(uiImage: img)
                                             .resizable()
                                             .scaledToFit()
@@ -69,7 +69,10 @@ struct ImportView: View {
                                             .cornerRadius(10)
                                             .shadow(color: Color.primary.opacity(0.3), radius: 1)
                                         Image(systemName: "xmark.circle")
+                                            .clipShape(Circle())
                                             .foregroundColor(.red)
+                                           // .background(Color(UIColor.systemBackground))
+                                            .offset(x: 8, y: -8)
                                             .onTapGesture {
                                                 let ix = selectedImages.firstIndex(of: img)
                                                 selectedImages.remove(at: ix!)
@@ -80,6 +83,7 @@ struct ImportView: View {
                                     
                                 }
                             }
+                            
                         }
                     }
                     .onTapGesture {
@@ -92,14 +96,18 @@ struct ImportView: View {
                                 .textFieldStyle(.roundedBorder)
                         }
                     }
-                    .padding(.horizontal, 10)
+                    .padding([.horizontal], 40)
+                    .padding()
                     
-                    Section {
-                        Button("Tap to add more photos") {
-                            //
-                            isImagePicker = true
+                    if selectedImages.count != 0 {
+                        Section {
+                            Button("Add more photos") {
+                                //
+                                isImagePicker = true
+                            }
                         }
                     }
+                   
                     
                     Section {
                         if addLocation {
@@ -170,7 +178,7 @@ struct ImportView: View {
                                             annotations[0].longitude)
                                 
                                 images.add(image: imageData)
-                                ImageModel.save(images: images.images)
+                                ImageModelView.save(images: images.images)
                                 successAlert = true
                                 print(images)
                             }
@@ -183,9 +191,9 @@ struct ImportView: View {
     }
 }
 
-//struct ImportView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ImportView()
-//            .environmentObject(ImageModel.ImagesSample)
-//    }
-//}
+struct ImportView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImportView()
+           // .environmentObject(ImageModel.ImagesSample)
+    }
+}
