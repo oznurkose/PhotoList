@@ -38,12 +38,14 @@ struct ImagePicker: UIViewControllerRepresentable {
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             
             for image in results {
-                if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
-                    image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
+                let provider = image.itemProvider
+                if provider.canLoadObject(ofClass: UIImage.self) {
+                    provider.loadObject(ofClass: UIImage.self) { newImage, error in
                     if let error = error {
                         print("Can't load image \(error.localizedDescription)")
                     } else if let image = newImage as? UIImage {
-                        self?.parent.images.append(image)
+                        print("---image appending")
+                        self.parent.images.append(image)
                     }
                 }
             } else {
@@ -51,6 +53,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                    }
             }
             picker.dismiss(animated: true)
+        
         }
     }
 }
