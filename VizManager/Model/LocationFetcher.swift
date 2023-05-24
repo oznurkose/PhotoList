@@ -7,6 +7,7 @@
 
 
 import CoreLocation
+import MapKit
 
 class LocationFetcher: NSObject, CLLocationManagerDelegate, ObservableObject {
     let manager = CLLocationManager()
@@ -25,4 +26,10 @@ class LocationFetcher: NSObject, CLLocationManagerDelegate, ObservableObject {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastKnownLocation = locations.first?.coordinate
     }
+    
+    static let SampleLF = LocationFetcher()
+    static let MapCoordinate = CLLocationCoordinate2D(latitude: SampleLF.lastKnownLocation?.latitude ?? 37.785834,
+                                                      longitude: SampleLF.lastKnownLocation?.longitude ?? -110.406417)
+    static let Region = MKCoordinateRegion(center: LocationFetcher.MapCoordinate,
+                                           span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
 }

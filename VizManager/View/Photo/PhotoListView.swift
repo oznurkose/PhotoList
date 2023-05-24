@@ -51,7 +51,7 @@ struct PhotoListView: View {
             return searchImages
         }
     }
-
+    
     
     
     var body: some View {
@@ -59,32 +59,13 @@ struct PhotoListView: View {
             List {
                 ForEach(filteredImages) { image in
                     NavigationLink(destination: DetailedView(image: image)) {
-                        HStack {
-                            Image(uiImage: image.image[0])
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                            
-                            Text("\(image.name)")
-                            Spacer()
-                            if image.isFavorite {
-                                Image(systemName: "heart.fill")
-                                    .foregroundColor(.red)
-                            }
-                        }
+                        PhotoRowView(image: image)
                     }
-                   
-                    } .onDelete { index in
-                        if let imageIndex = images.images.firstIndex(where: { $0.id == filteredImages[index.first!].id } ) {
-                            images.remove(at: imageIndex)
-                            ImageModelView.save(images: images.images)
-                        }
-                        
-                    
                 }
-                
-            }
+                .onDelete { index in
+                    images.onDelete(at: index, selectedList: filteredImages)
+                    }   
+                }
             .searchable(text: $searchText)
             .onAppear {
                 images.load()
@@ -127,7 +108,7 @@ struct PhotoListView: View {
             }
             
         }
-       // .environmentObject(images)
+        // .environmentObject(images)
     }
 }
 
@@ -135,5 +116,7 @@ struct PhotoListView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoListView()
             .environmentObject(ImageModelView.ImagesSample)
+            .environmentObject(Settings.Sample)
+            .environmentObject(LocationFetcher.SampleLF)
     }
 }

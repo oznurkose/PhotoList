@@ -29,7 +29,7 @@ class ImageModelView: ObservableObject {
         
     }
     
-    static func save(images: [ImageData]) {
+    func save(images: [ImageData]) {
         guard let url = ImageModelView.getDocumentsURL() else { return }
         do {
             let encoder = JSONEncoder()
@@ -58,15 +58,22 @@ class ImageModelView: ObservableObject {
         if let index = self.images.firstIndex(where: { $0.id == image.id }) {
             self.images.remove(at: index)
         }
-        //self.save(images: self.images)
+        self.save(images: self.images)
     }
     
-    func remove(at index: Int) {
-        self.images.remove(at: index)
+    func onDelete(at offsets: IndexSet, selectedList: [ImageData]) {
+        for selectedListIndex in offsets {
+            if let index = self.images.firstIndex(where: { $0.id == selectedList[selectedListIndex].id }) {
+                self.images.remove(at: index)
+            }
+        }
+        
+        self.save(images: self.images)
     }
     
     func add(image: ImageData) {
         self.images.insert(image, at: 0)
+        self.save(images: self.images)
     }
     
     func edit(image: ImageData) {
@@ -89,4 +96,6 @@ extension ImageModelView {
 class Settings: ObservableObject {
     @Published var nameOnly = false
     @Published var favOnly = false
+    
+    static let Sample = Settings()
 }

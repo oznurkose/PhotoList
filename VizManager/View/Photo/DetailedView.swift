@@ -10,13 +10,9 @@ import SwiftUI
 struct DetailedView: View {
     @State var image: ImageData
     @State private var showingEditScreen = false
-    @EnvironmentObject var images: ImageModelView
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
-    
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
-                                           span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
-    
+    @State var region = LocationFetcher.Region
     var columns = [GridItem(.adaptive(minimum: 200))]
     @State var annotations = [ImageData.MapAnnotations]()
     
@@ -46,6 +42,7 @@ struct DetailedView: View {
                                     Image(uiImage: img)
                                         .resizable()
                                         .scaledToFit()
+                                        .padding()
                                 }
                             }
                         }
@@ -55,8 +52,11 @@ struct DetailedView: View {
                             Text("\(image.name)")
                                 .font(.headline)
                             
-                            Map(coordinateRegion: $region, annotationItems: [image.locationData]) {
-                                MapMarker(coordinate: $0.location)
+                            Map(coordinateRegion: $region, annotationItems: [image]) { img in
+                                MapAnnotation(coordinate: img.locationData.location) {
+                                        AnnotationView(image: img)
+                                }
+                                
                             }
                             .frame(height: 500)
                         }
@@ -67,7 +67,6 @@ struct DetailedView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Edit") {
-                        //
                         showingEditScreen = true
                     }
                 }
@@ -76,8 +75,6 @@ struct DetailedView: View {
                 EditView(image: image)
             }
             .onAppear {
-                if let index = images.images.firstIndex(where: { $0.id == image.id }) {
-                    image = images.images[index] }
                 region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: image.locationData.latitude, longitude: image.locationData.longitude), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
             }
             
@@ -88,6 +85,5 @@ struct DetailedView: View {
 struct DetailedView_Previews: PreviewProvider {
     static var previews: some View {
         DetailedView(image: ImageModelView.ImagesSample.images[0])
-            .environmentObject(ImageModelView.ImagesSample)
     }
 }

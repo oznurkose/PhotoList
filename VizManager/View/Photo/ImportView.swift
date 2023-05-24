@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ImportView: View {
     @State var selectedImages = [UIImage]()
-    //@State var image: UIImage?
     @State private var isImagePicker = false
     
     @State private var imageName = ""
@@ -34,29 +33,8 @@ struct ImportView: View {
             ScrollView {
                 VStack {
                     Group {
-                        if selectedImages.count == 0 {
-                            // image selection button
-                            ZStack {
-                                ZStack(alignment: .bottomTrailing) {
-                                    // image frame
-                                    Circle()
-                                        .strokeBorder(.blue, lineWidth:1)
-                                        .frame(width: 200, height: 200)
-                                    
-                                    Image(systemName: "plus.circle")
-                                        .background(Color(UIColor.systemBackground))
-                                        .frame(width: 58, height: 58)
-                                        .foregroundColor(.blue)
-                                        .font(.title)
-                                }
-                                Image(systemName: "photo.on.rectangle")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(70)
-                                    .frame(width: 250, height: 250)
-                                    .foregroundColor(.blue)
-                                    .clipShape(Circle())
-                            }
+                        if selectedImages.isEmpty {
+                            ImagePlaceholderView()
                         }
                         else {
                             ForEach(selectedImages, id: \.self) { img in
@@ -65,25 +43,21 @@ struct ImportView: View {
                                         Image(uiImage: img)
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 170)
-                                            .cornerRadius(10)
+                                            //.cornerRadius(10)
                                             .shadow(color: Color.primary.opacity(0.3), radius: 1)
                                         Image(systemName: "xmark.circle")
                                             .clipShape(Circle())
                                             .foregroundColor(.red)
-                                           // .background(Color(UIColor.systemBackground))
                                             .offset(x: 8, y: -8)
                                             .onTapGesture {
                                                 let ix = selectedImages.firstIndex(of: img)
                                                 selectedImages.remove(at: ix!)
                                             }
-                                           
                                     }
-                                    
-                                    
+                                    .padding([.horizontal], 40)
+                                    .padding()
                                 }
                             }
-                            
                         }
                     }
                     .onTapGesture {
@@ -107,7 +81,7 @@ struct ImportView: View {
                             }
                         }
                     }
-                   
+                    
                     
                     Section {
                         if addLocation {
@@ -135,9 +109,6 @@ struct ImportView: View {
                             .padding()
                             Spacer()
                         }
-                        
-                        
-                        
                     }
                     .padding(.horizontal, 10)
                     
@@ -145,12 +116,12 @@ struct ImportView: View {
                 .sheet(isPresented: $isImagePicker) {
                     ImagePicker(images: self.$selectedImages)
                 }
-                .alert("Image saved successfuly!🎉", isPresented: $successAlert) {
+                .alert("📸 VizManaged! 🎊", isPresented: $successAlert) {
                     Button("OK") {
                         dismiss()
                     }
                 }
-                .alert("You have to select an image!📷", isPresented: $errorAlert) {
+                .alert("You have to select a Viz! 📷", isPresented: $errorAlert) {
                     //
                 }
                 .toolbar {
@@ -178,9 +149,7 @@ struct ImportView: View {
                                             annotations[0].longitude)
                                 
                                 images.add(image: imageData)
-                                ImageModelView.save(images: images.images)
                                 successAlert = true
-                                print(images)
                             }
                             
                         }
@@ -194,6 +163,6 @@ struct ImportView: View {
 struct ImportView_Previews: PreviewProvider {
     static var previews: some View {
         ImportView()
-           // .environmentObject(ImageModel.ImagesSample)
+            .environmentObject(ImageModelView.ImagesSample)
     }
 }

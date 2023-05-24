@@ -120,7 +120,6 @@ struct EditView: View {
                     images.delete(image: image)
                     image.locationData = annotations[0]
                     images.add(image: image)
-                    ImageModelView.save(images: images.images)
                     print(images)
                     dismiss()
                 }
@@ -131,7 +130,6 @@ struct EditView: View {
                 Button {
                     //
                     images.delete(image: image)
-                    ImageModelView.save(images: images.images)
                     dismiss.callAsFunction()
                 } label: {
                     Label("Delete", systemImage: "trash")
