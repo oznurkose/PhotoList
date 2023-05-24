@@ -35,7 +35,7 @@ struct DetailedView: View {
                     if segmentedView == "Photo" {
                         VStack(alignment: .center) {
                             Text("\(image.name)")
-                                .font(.headline)
+                                .font(.title)
                             
                             ForEach(image.image, id: \.self) { img in
                                 LazyVGrid(columns: columns) {
@@ -50,7 +50,7 @@ struct DetailedView: View {
                     else {
                         VStack {
                             Text("\(image.name)")
-                                .font(.headline)
+                                .font(.title)
                             
                             Map(coordinateRegion: $region, annotationItems: [image]) { img in
                                 MapAnnotation(coordinate: img.locationData.location) {

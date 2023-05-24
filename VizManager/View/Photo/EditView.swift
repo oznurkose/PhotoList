@@ -14,10 +14,8 @@ struct EditView: View {
     @State private var segmentedView = "Photo"
     var segments = ["Photo", "Location"]
     @State private var isImagePicker = false
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.785834, longitude: -122.406417),
-                                           span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+    @State var region = LocationFetcher.Region
     @State var annotations = [ImageData.MapAnnotations]()
-    
     var columns = [GridItem(.adaptive(minimum: 200))]
     
     var body: some View {
@@ -33,49 +31,45 @@ struct EditView: View {
                 
                 if segmentedView == "Photo" {
                     VStack {
+                        TextField("Edit", text: $image.name)
+                            .font(.title)
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.horizontal)
+                        
                         Section {
-                            Button("Tap to add more photos") {
+                            Button {
                                 //
                                 isImagePicker = true
+                            } label: {
+                                Label("Add more photos", systemImage: "plus.circle")
                             }
-                        }
-                        TextField("Edit", text: $image.name)
-                            .font(.headline)
-                            .textFieldStyle(.roundedBorder)
-                            .padding(.horizontal, 10)
+                        }.padding()
                         
                         ForEach(image.image, id: \.self) { img in
                             LazyVGrid(columns: columns) {
                                 HStack(alignment: .top) {
-                                    
                                     Image(uiImage: img)
                                         .resizable()
                                         .scaledToFit()
-                                    //.frame(height: 500)
-                                    //.padding()
                                     
                                     Image(systemName: "xmark.circle")
                                         .foregroundColor(.red)
                                         .onTapGesture {
-                                            
-                                        
-                                            
-                                            //images.delete(image: image)
                                             let ix = image.image.firstIndex(of: img)
                                             image.image.remove(at: ix!)
-                                            print("image deleting")
-                                            //images.add(image: image)
-                                            //ImageModel.save(images: images.images)
-                                            
                                         }
                                 }
+                                .padding()
                             }
                         }
                         
                        
                         
                         Button {
-                            image.isFavorite.toggle()
+                            withAnimation(.easeOut) {
+                                image.isFavorite.toggle()
+                            }
+                            
                         } label: {
                             if image.isFavorite {
                                 Label("Remove from favorites", systemImage: "heart.fill")
@@ -94,7 +88,7 @@ struct EditView: View {
                 else {
                     VStack {
                         Text("\(image.name)")
-                            .font(.headline)
+                            .font(.title)
                         ZStack {
                             Map(coordinateRegion: $region, annotationItems: annotations) {
                                 MapMarker(coordinate: $0.location)
@@ -149,8 +143,9 @@ struct EditView: View {
 
 
 
-//struct EditView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditView(imagePhoto: (UIImage(named: "sicily") ?? UIImage(systemName: "person.crop.square"))!)
-//    }
-//}
+struct EditView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditView(image: ImageModelView.ImagesSample.images[0])
+            .environmentObject(ImageModelView.ImagesSample)
+    }
+}
