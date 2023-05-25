@@ -47,13 +47,15 @@ struct EditView: View {
                         
                         ForEach(image.image, id: \.self) { img in
                             LazyVGrid(columns: columns) {
-                                HStack(alignment: .top) {
+                                ZStack(alignment: .topTrailing) {
                                     Image(uiImage: img)
                                         .resizable()
                                         .scaledToFit()
-                                    
-                                    Image(systemName: "xmark.circle")
-                                        .foregroundColor(.red)
+                                    Image(systemName: "xmark.circle.fill")
+                                        .offset(x: 8, y: -8)
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle( Color.white, Color.Burgundy)
+                                        .shadow(color: Color.primary.opacity(0.3), radius: 1)
                                         .onTapGesture {
                                             let ix = image.image.firstIndex(of: img)
                                             image.image.remove(at: ix!)

@@ -39,17 +39,18 @@ struct ImportView: View {
                         else {
                             ForEach(selectedImages, id: \.self) { img in
                                 LazyVGrid(columns: columns) {
-                                    HStack(alignment: .top, spacing: 0) {
+                                    ZStack(alignment: .topTrailing) {
                                         Image(uiImage: img)
                                             .resizable()
                                             .scaledToFit()
-                                            //.cornerRadius(10)
                                             .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                                        Image(systemName: "xmark.circle")
-                                            .clipShape(Circle())
-                                            .foregroundColor(.red)
+                                        Image(systemName: "xmark.circle.fill")
+                                            .symbolRenderingMode(.palette)
+                                            .foregroundStyle( Color.white, Color.Burgundy)
                                             .offset(x: 8, y: -8)
+                                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
                                             .onTapGesture {
+                                            
                                                 let ix = selectedImages.firstIndex(of: img)
                                                 selectedImages.remove(at: ix!)
                                             }
