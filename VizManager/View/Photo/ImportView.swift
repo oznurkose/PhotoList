@@ -30,129 +30,133 @@ struct ImportView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
+            VStack {
+                GeometryReader { geo in
                     Group {
                         if selectedImages.isEmpty {
                             ImagePlaceholderView()
-                        }
-                        else {
-                            ForEach(selectedImages, id: \.self) { img in
-                                LazyVGrid(columns: columns) {
-                                    ZStack(alignment: .topTrailing) {
-                                        Image(uiImage: img)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                                        Image(systemName: "xmark.circle.fill")
-                                            .symbolRenderingMode(.palette)
-                                            .foregroundStyle( Color.white, Color.Burgundy)
-                                            .offset(x: 8, y: -8)
-                                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                                            .onTapGesture {
-                                            
-                                                let ix = selectedImages.firstIndex(of: img)
-                                                selectedImages.remove(at: ix!)
-                                            }
-                                    }
-                                    .padding([.horizontal], 40)
-                                    .padding()
+                                .frame(width: geo.size.width, height: geo.size.height)
+                                .onTapGesture {
+                                    isImagePicker = true
                                 }
-                            }
                         }
-                    }
-                    .onTapGesture {
-                        isImagePicker = true
-                    }
-                    
-                    Section {
-                        HStack {
-                            TextField("Name", text: $imageName, prompt: Text("Name"))
-                                .textFieldStyle(.roundedBorder)
-                        }
-                    }
-                    .padding([.horizontal], 40)
-                    .padding()
-                    
-                    if selectedImages.count != 0 {
-                        Section {
-                            Button("Add more photos") {
-                                //
-                                isImagePicker = true
-                            }
-                        }
-                    }
-                    
-                    
-                    Section {
-                        if addLocation {
-                            ZStack {
-                                Map(coordinateRegion: $region, annotationItems: annotations) {
-                                    MapMarker(coordinate: $0.location)
-                                }
-                                .frame(height: 200)
-                                
-                                Circle()
-                                    .strokeBorder(.red)
-                                    .frame(width: 32, height: 32)
-                            }
-                            .onTapGesture {
-                                annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
-                            }
-                        }
+                        
                         else {
-                            Spacer()
-                            Button("Tap to add location") {
-                                //
-                                addLocation = true
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .padding()
-                            Spacer()
-                        }
-                    }
-                    .padding(.horizontal, 10)
-                    
-                }
-                .sheet(isPresented: $isImagePicker) {
-                    ImagePicker(images: self.$selectedImages)
-                }
-                .alert("📸 VizManaged! 🎊", isPresented: $successAlert) {
-                    Button("OK") {
-                        dismiss()
-                    }
-                }
-                .alert("You have to select a Viz! 📷", isPresented: $errorAlert) {
-                    //
-                }
-                .toolbar {
-                    ToolbarItem {
-                        Button("Save") {
-                            //
-                            if $selectedImages.isEmpty {
-                                // show alert
-                                errorAlert = true
-                                
-                            }
-                            else {
-                                let imageData =
-                                ImageData(id: UUID(),
-                                          name: imageName,
-                                          image: selectedImages,
-                                          date: Date.now,
-                                          latitude:
-                                            annotations.isEmpty ?
-                                          region.center.latitude :
-                                            annotations[0].latitude,
-                                          longitude:
-                                            annotations.isEmpty ?
-                                          region.center.longitude :
-                                            annotations[0].longitude)
-                                
-                                images.add(image: imageData)
-                                successAlert = true
-                            }
                             
+                            ScrollView(.horizontal) {
+                                LazyHStack {
+                                    ForEach(selectedImages, id: \.self) { img in
+                                        ZStack(alignment: .topTrailing) {
+                                            Image(uiImage: img)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: (geo.size.width * 0.90))
+                                                .shadow(color: Color.primary.opacity(0.3), radius: 1)
+                                            
+                                            
+                                            DeleteButton()
+                                                .onTapGesture {
+                                                    let ix = selectedImages.firstIndex(of: img)
+                                                    selectedImages.remove(at: ix!)
+                                                }
+                                        }
+                                        .padding()
+                                        //.frame(width: geo.size.width, height: geo.size.height / 3)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                  
+                    
+                }
+                   
+                Section {
+                    HStack {
+                        TextField("Name", text: $imageName, prompt: Text("Name"))
+                            .textFieldStyle(.roundedBorder)
+                    }
+                }
+                .padding([.horizontal], 40)
+                .padding()
+                
+                Section {
+                    if addLocation {
+                        ZStack {
+                            Map(coordinateRegion: $region, annotationItems: annotations) {
+                                MapMarker(coordinate: $0.location)
+                            }
+                            .frame(height: 200)
+                            
+                            Circle()
+                                .strokeBorder(.red)
+                                .frame(width: 32, height: 32)
+                        }
+                        .onTapGesture {
+                            annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
+                        }
+                    }
+                    else {
+                        //Spacer()
+                        Button("Tap to add location") {
+                            //
+                            addLocation = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding()
+                        Spacer()
+                    }
+                }
+                .padding(.horizontal, 10)
+                
+            }
+            .sheet(isPresented: $isImagePicker) {
+                ImagePicker(images: self.$selectedImages)
+            }
+            .alert("📸 VizManaged! 🎊", isPresented: $successAlert) {
+                Button("OK") {
+                    dismiss()
+                }
+            }
+            .alert("You have to select a Viz! 📷", isPresented: $errorAlert) {
+                //
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        //
+                        if $selectedImages.isEmpty {
+                            // show alert
+                            errorAlert = true
+                        }
+                        else {
+                            let imageData =
+                            ImageData(id: UUID(),
+                                      name: imageName,
+                                      image: selectedImages,
+                                      date: Date.now,
+                                      latitude:
+                                        annotations.isEmpty ?
+                                      region.center.latitude :
+                                        annotations[0].latitude,
+                                      longitude:
+                                        annotations.isEmpty ?
+                                      region.center.longitude :
+                                        annotations[0].longitude)
+                            
+                            images.add(image: imageData)
+                            successAlert = true
+                        }
+                        
+                    }
+                }
+                if !selectedImages.isEmpty {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            //
+                            isImagePicker = true
+                        } label: {
+                            Label("Add more", systemImage: "photo.stack")
                         }
                     }
                 }
@@ -160,6 +164,8 @@ struct ImportView: View {
         }
     }
 }
+
+
 
 struct ImportView_Previews: PreviewProvider {
     static var previews: some View {

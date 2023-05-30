@@ -13,6 +13,7 @@
 		0121381B2A1E37D800F8A5E9 /* ImagePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121381A2A1E37D800F8A5E9 /* ImagePlaceholderView.swift */; };
 		0121381D2A1E3D5000F8A5E9 /* PhotoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121381C2A1E3D5000F8A5E9 /* PhotoRow.swift */; };
 		012138212A1E596100F8A5E9 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012138202A1E596100F8A5E9 /* Color.swift */; };
+		012138232A1FB3E500F8A5E9 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012138222A1FB3E500F8A5E9 /* DeleteButton.swift */; };
 		01515DFE29E5D0DE001F3296 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01515DFD29E5D0DE001F3296 /* SettingsView.swift */; };
 		016D67DE29F0675E00610BA4 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016D67DD29F0675E00610BA4 /* Annotation.swift */; };
 		01BA703029E027280049EB22 /* VizManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA702F29E027280049EB22 /* VizManagerApp.swift */; };
@@ -34,6 +35,7 @@
 		0121381A2A1E37D800F8A5E9 /* ImagePlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaceholderView.swift; sourceTree = "<group>"; };
 		0121381C2A1E3D5000F8A5E9 /* PhotoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRow.swift; sourceTree = "<group>"; };
 		012138202A1E596100F8A5E9 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		012138222A1FB3E500F8A5E9 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		01515DFD29E5D0DE001F3296 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		016D67DD29F0675E00610BA4 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		01BA702C29E027280049EB22 /* VizManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 		012138192A1E37B300F8A5E9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				012138222A1FB3E500F8A5E9 /* DeleteButton.swift */,
 				012138202A1E596100F8A5E9 /* Color.swift */,
 				0121381A2A1E37D800F8A5E9 /* ImagePlaceholderView.swift */,
 			);
@@ -222,6 +225,7 @@
 				01BA703229E027280049EB22 /* ContentView.swift in Sources */,
 				012138092A1A4FB600F8A5E9 /* MainMapView.swift in Sources */,
 				016D67DE29F0675E00610BA4 /* Annotation.swift in Sources */,
+				012138232A1FB3E500F8A5E9 /* DeleteButton.swift in Sources */,
 				01BA704029E02A180049EB22 /* ImportView.swift in Sources */,
 				011B10D929E81F3200588AE7 /* LocationFetcher.swift in Sources */,
 				012138212A1E596100F8A5E9 /* Color.swift in Sources */,
