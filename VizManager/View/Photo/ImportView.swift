@@ -77,7 +77,7 @@ struct ImportView: View {
                             .textFieldStyle(.roundedBorder)
                     }
                 }
-                .padding([.horizontal], 40)
+                //.padding([.horizontal], 40)
                 .padding()
                 
                 Section {
@@ -92,9 +92,11 @@ struct ImportView: View {
                                 .strokeBorder(.red)
                                 .frame(width: 32, height: 32)
                         }
+                        .padding()
                         .onTapGesture {
                             annotations = [ImageData.MapAnnotations.init(latitude: region.center.latitude, longitude: region.center.longitude)]
                         }
+                        Spacer()
                     }
                     else {
                         //Spacer()
