@@ -1,6 +1,7 @@
 # VizManager - iOS Visualization Manager App
 
-![vizlogo](https://github.com/oznurkose/VizManager/assets/51455152/9005597f-7a3e-47ea-82f5-d280af3668b5)
+
+![vizlogosmall](https://github.com/oznurkose/VizManager/assets/51455152/7e4347a5-e154-4574-8e5b-0e3da423e100)
 
 
 
