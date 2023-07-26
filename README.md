@@ -24,7 +24,7 @@ The first tab displays all the photo buckets created by the user, organized by n
 
 2. Import and Location Tagging Tab
 
-In this tab, users can import photos from their iOS photo library and assign them to specific buckets. Additionally, users can choose to add a location tag to the bucket, allowing them to view their visual content on the map.
+In this tab, users can import photos from their iOS photo library and assign them to specific title. Additionally, users can choose to add a location tag to the bucket, allowing them to view their visual content on the map.
 
 <img src="https://github.com/oznurkose/VizManager/assets/51455152/6af70fa7-1f87-4ee5-8409-8f4b2560c6fc" width="200" height="433">
 
