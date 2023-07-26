@@ -32,7 +32,7 @@ struct EditView: View {
                 if segmentedView == "Photo" {
                     VStack {
                         TextField("Edit", text: $image.name)
-                            .font(.title)
+                            .font(.headline)
                             .textFieldStyle(.roundedBorder)
                             .padding(.horizontal)
                         
@@ -90,7 +90,7 @@ struct EditView: View {
                 else {
                     VStack {
                         Text("\(image.name)")
-                            .font(.title)
+                            .font(.headline)
                         ZStack {
                             Map(coordinateRegion: $region, annotationItems: annotations) {
                                 MapMarker(coordinate: $0.location)
