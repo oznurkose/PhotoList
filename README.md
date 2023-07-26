@@ -20,7 +20,7 @@ Edit functionality to add, delete, or modify images, titles, and locations withi
 ## Screenshots
 1. Bucket Listing Tab
 
-<img src="https://github.com/oznurkose/VizManager/assets/51455152/9c1df7c0-ac21-4bad-977e-4f6d3d869d8d" width="400" height="700">
+<img src="https://github.com/oznurkose/VizManager/assets/51455152/9c1df7c0-ac21-4bad-977e-4f6d3d869d8d" width="400" height="750">
 
 The first tab displays all the photo buckets created by the user, organized by name. Users can easily access and manage their visual content through this tab.
 
