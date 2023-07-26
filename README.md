@@ -42,6 +42,7 @@ The interactive map view displays all the photo bucket locations as map pins. Ta
 
 The detailed view of each bucket showcases all the images it contains, along with their titles and locations. Users can easily navigate through their visual content using this view.
 
+<img src="https://github.com/oznurkose/VizManager/assets/51455152/c0b0ac5e-15e1-4381-8110-bbc113115f37" width="200" height="433">
 <img src="https://github.com/oznurkose/VizManager/assets/51455152/4f8aae38-3753-4929-ae64-968679e8563b" width="200" height="433">
 
 ## How to Use
