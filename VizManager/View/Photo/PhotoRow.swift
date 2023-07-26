@@ -21,7 +21,7 @@ struct PhotoRowView: View {
             Spacer()
             if image.isFavorite {
                 Image(systemName: "heart.fill")
-                    .foregroundColor(.red)
+                    .foregroundColor(.Burgundy)
             }
         }
     }

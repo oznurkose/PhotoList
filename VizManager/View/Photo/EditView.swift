@@ -75,7 +75,7 @@ struct EditView: View {
                         } label: {
                             if image.isFavorite {
                                 Label("Remove from favorites", systemImage: "heart.fill")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.Burgundy)
                             }
                             else {
                                 Label("Make favorite", systemImage: "heart")
