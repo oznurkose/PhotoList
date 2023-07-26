@@ -1,6 +1,6 @@
 # VizManager - iOS Visualization Manager App
 
-<img src="https://github.com/oznurkose/VizManager/assets/51455152/2a09d298-007e-4efa-90c2-aed8f5d7fc7b" width="200" height="200">
+<img src="https://github.com/oznurkose/VizManager/assets/51455152/2a09d298-007e-4efa-90c2-aed8f5d7fc7b" width="100" height="100">
 
 
 ## Introduction
