@@ -1,7 +1,8 @@
 # VizManager - iOS Visualization Manager App
 
+![vizlogo](https://github.com/oznurkose/VizManager/assets/51455152/9005597f-7a3e-47ea-82f5-d280af3668b5)
 
-![VizManager Logo (1024 × 1024 px)](https://github.com/oznurkose/VizManager/assets/51455152/fd0287ed-6649-40d1-9a59-82d387ea2af6)
+
 
 
 ## Introduction
@@ -17,22 +18,26 @@ Edit functionality to add, delete, or modify images, titles, and locations withi
 
 ## Screenshots
 1. Bucket Listing Tab
-Bucket Listing
+![Simulator Screen Shot - iPhone 14 Pro - 2023-07-26 at 17 17 47](https://github.com/oznurkose/VizManager/assets/51455152/9c1df7c0-ac21-4bad-977e-4f6d3d869d8d)
+
 
 The first tab displays all the photo buckets created by the user, organized by name. Users can easily access and manage their visual content through this tab.
 
 2. Import and Location Tagging Tab
-Import and Location Tagging
+
+![Simulator Screen Shot - iPhone 14 Pro - 2023-07-26 at 16 50 01](https://github.com/oznurkose/VizManager/assets/51455152/6af70fa7-1f87-4ee5-8409-8f4b2560c6fc)
 
 In this tab, users can import photos from their iOS photo library and assign them to specific buckets. Additionally, users can choose to add a location tag to the bucket, allowing them to view their visual content on the map.
 
 3. Interactive Map View Tab
-Map View
+
+![Simulator Screen Shot - iPhone 14 Pro - 2023-07-26 at 16 51 32](https://github.com/oznurkose/VizManager/assets/51455152/7314bc79-c37d-4993-bfa1-03204cf0b8bd)
 
 The interactive map view displays all the photo bucket locations as map pins. Tapping on a map pin reveals the bucket's title, and tapping on the title leads to the detailed view of the bucket.
 
 4. Bucket Detailed View
-Bucket Detailed View
+![Simulator Screen Shot - iPhone 14 Pro - 2023-07-26 at 17 11 26](https://github.com/oznurkose/VizManager/assets/51455152/4f8aae38-3753-4929-ae64-968679e8563b)
+
 
 The detailed view of each bucket showcases all the images it contains, along with their titles and locations. Users can easily navigate through their visual content using this view.
 
