@@ -19,6 +19,8 @@ Edit functionality to add, delete, or modify images, titles, and locations withi
 
 ## Screenshots
 1. Bucket Listing Tab
+
+<img src="https://github.com/oznurkose/VizManager/assets/51455152/9c1df7c0-ac21-4bad-977e-4f6d3d869d8d" width="150" height="280">
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-07-26 at 17 17 47](https://github.com/oznurkose/VizManager/assets/51455152/9c1df7c0-ac21-4bad-977e-4f6d3d869d8d)
 
 
