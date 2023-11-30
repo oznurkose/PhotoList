@@ -8,6 +8,7 @@
 VizManager is an innovative iOS app that serves as a powerful visualization manager, allowing users to import and organize multiple photos from their library into customizable buckets. With the ability to sort and view these buckets in various ways, including on an interactive map, VizManager offers a seamless and intuitive user experience for managing visual content efficiently.
 
 ## Features
+
 Import multiple photos from your iOS photo library into customized buckets.
 Create and assign a name to each bucket for easy organization.
 Optional location tagging for each bucket to visualize them on an interactive map.
